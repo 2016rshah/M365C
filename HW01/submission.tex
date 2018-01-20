@@ -1,0 +1,60 @@
+\documentclass[]{article}
+
+\author{Rushi Shah}
+\date{\today}
+\title{Assignment 1}
+
+\setlength{\columnsep}{.75in}
+
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+\usepackage[margin=1in]{geometry}
+
+\usepackage{titling}
+\setlength{\droptitle}{-85pt}
+
+% Prefix section headers with "Problem"
+\renewcommand*{\thesection}{Problem~\arabic{section}}
+
+\newcommand{\integers}{\mathbb{Z}}
+\newcommand{\naturals}{\mathbb{N}}
+\newcommand{\reals}{\mathbb{R}}
+\newcommand{\complexes}{\mathbb{C}}
+\newcommand{\rationals}{\mathbb{Q}}
+\newcommand{\inv}{^{-1}}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+
+\begin{document}
+	\maketitle
+
+	\section{}
+		\textit{Let X = \{1, 2, a\}. Find the power set of X, $P(X)$.}
+
+	\section{}
+		\textit{For each $n \in \naturals$, let $A_n = \{(n + 1)k : k \in \naturals\}$}
+
+		\subsection*{a)}
+		\textit{What is $A_1 \cap A_2$?}
+		\subsection*{b)}
+		\textit{Determine the sets $\cup\{A_n : n \in \naturals \}$ and $\cap\{A_n : n \in \naturals\}$.}
+
+	\section{}
+		\textit{Let A and B be two sets. Prove that $A \subseteq B$ iff $A \cap B = A$}
+
+	\section{}
+		\textit{Let A, B, and C be arbitrary sets. Prove that $A \cap (B \cup C) = (A \cap B)\cup (A \cap C)$.}
+
+	\section{}
+		\textit{Let $\naturals$ be the set of natural numbers, and $|$ be the relation of divisibility (i.e. we say $y \in \naturals$ divides $x \in \naturals$, denoted by $y|x$, if there exists an integer n such that $x = ny$). Prove that $|$ is an ordering relation on $\integers$}
+
+	\section{}
+		\textit{Let $\leq$ be an ordering relation on the set X. We define the inverse of $\leq$, denoted by $\geq$ , as follows: $\forall x, y \in X, x \geq y\ \text{iff}\ y \leq x$. Prove that $\geq$ is an ordering relation on X.}
+
+	\section{}
+		\textit{Let $(X,\leq)$ be a totally-ordered space and $Y \subseteq X$ an nonempty subset of X. Let $\alpha$ be a lower bound of Y and $\beta$ an upper bound of Y. Prove that $\alpha \leq \beta$.}
+
+\end{document}
