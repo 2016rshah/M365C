@@ -1,0 +1,137 @@
+\documentclass[]{article}
+
+\author{Rushi Shah}
+\date{\today}
+\title{Assignment 2}
+
+\setlength{\columnsep}{.75in}
+
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+\usepackage[margin=1in]{geometry}
+
+\usepackage{titling}
+\setlength{\droptitle}{-85pt}
+
+% Prefix section headers with "Problem"
+\renewcommand*{\thesection}{Problem~\arabic{section}}
+
+
+% Note: `\to` is a synonym for `\rightarrow`
+\newcommand{\integers}{\mathbb{Z}}
+\newcommand{\naturals}{\mathbb{N}}
+\newcommand{\reals}{\mathbb{R}}
+\newcommand{\complexes}{\mathbb{C}}
+\newcommand{\rationals}{\mathbb{Q}}
+\newcommand{\inv}{^{-1}}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+
+\begin{document}
+	\maketitle
+
+	\section{}
+		\textit{Let $f : \reals \rightarrow \reals$ and $g : \reals \rightarrow \reals$ be two functions whose analytical expressions are given below. In each case, determine the domain and compute a formula for $f \circ g$ and $g \circ f$}
+		\subsection*{a)}
+			\textit{$f(x) = 2x + 1$ and $g(x) = e^x$}
+
+			\[f \circ g = f(g(x)) = 2(e^x) + 1\]
+
+			\[Dom(f \circ g) = \{x | x \in Dom(g), g(x) \in Dom(f)\} = \reals\]
+
+			\[g \circ f = g(f(x)) = e^{2x+1}\]
+
+			\[Dom(g \circ f) = \{x | x \in Dom(f), f(x) \in Dom(g)\} = \reals\]
+
+		\subsection*{b)}
+			\textit{$f(x) = 4 - x^2$ and $g(x) = ln\ x$}
+
+			\[f \circ g = f(g(x)) = 4 - (ln\ x)^2\]
+
+			\[Dom(f \circ g) = \{x | x \in Dom(g), g(x) \in Dom(f)\} = (0, \infty)\]
+
+			\[g \circ f = g(f(x)) = ln\ (4 - x^2)\]
+
+			\[Dom(g \circ f) = \{x | x \in Dom(f), f(x) \in Dom(g)\}\]
+			\begin{align*}
+				f(x) &\in Dom(g) \\ 
+				(4 - x^2) &\in (0, \infty) \\
+				4 - x^2 &> 0 \\
+				4 &> x^2 \\ 
+				x &\in (-2, 2)
+			\end{align*}
+
+			so $Dom(g \circ f) = (-2, 2)$
+
+	\section{}
+		\textit{Each of the following functions has domain $Dom(f) = \{x \in \reals | x \neq 0\}$. For each, determine the range of the function and whether it is injective and surjective as a function $f : Dom(f) \mapsto \reals$:}
+		\subsection*{a)}
+
+			\textit{$f(x) = \frac{1}{x}$}
+
+				Range is $(-\infty, 0) \cup (0, \infty)$. Function is injective, but not surjective. 
+
+		\subsection*{b)}
+			\textit{$f(x) = ln\ |x|$}
+
+				Range is $\reals$. Function is not injective, but it is surjective.
+
+		\subsection*{c)}
+			\textit{$f(x) = \frac{1}{x^2}$}
+
+				Range is positive real numbers. Not injective, not surjective. 
+
+	\section{}
+		\textit{Let X be the set of all students on the campus of UT Austin. Define the binary relation $\sim$ as follows. For any two students x and y, we say $x \sim y$ if x and y have the same birthday. Show that $\sim$ is an equivalence relation on X.}
+
+			An equivalence relation must satisfy three axioms: reflexivity, symmetry, and transitivity.
+
+			\underline{Reflexivity: $x \sim x\ .\ \forall x \in X$:} 
+			Obviously any student has the same birthday as themselves. 
+
+			\underline{Symmetry: $x \sim y \to y \sim x\ .\ \forall x, y \in X$:} 
+			If student x has the same birthday as student y, then obviously student y has the same birthday as student x. 
+
+			\underline{Transitivity: $x \sim y, y \sim z \to x \sim z\ .\ \forall x, y, z \in X$:} 
+			If student x has the same birthday as y, and y has the same birthday as z, then obviously x has the same birthday as z. 
+
+	\section{}
+		\textit{Let $X = \reals$ be the set of real numbers. Define the ``square'' relation $R = \{(x, y) | x^2 = y^2\}$. Show that $R$ is an equivalence relation.}
+
+			Define $\sim$ as the binary relation R. An equivalence relation must satisfy three axioms: reflexivity, symmetry, and transitivity.
+
+			\underline{Reflexivity: $x \sim x\ .\ \forall x \in X$:}
+				Given some $(x, x) \in R$, we can see that $x \sim x$ because $x^2 = x^2$ by the reflexivity of equality over real numbers. 
+
+			\underline{Symmetry: $x \sim y \to y \sim x\ .\ \forall x, y \in X$:}
+				Given some $(x, y) \in R$, we can see that $y^2 = x^2 \to y \sim x$ when $x \sim y$ because of the symmetry of equality over real numbers.
+
+			\underline{Transitivity: $x \sim y, y \sim z \to x \sim z\ .\ \forall x, y, z \in X$:}
+				$x \sim y \to x^2 = y^2$ and $y \sim z \to y^2 = z^2$. Thus by the transitivity of equality over the real numbers we can see that $x^2 = y^2 = z^2 \to x \sim z$. 
+
+	\section{}
+		\textit{Let $X$ be the set of fractions: $X = \{\frac{p}{q} | p, q \in \integers, q \neq 0\}$. Define a binary relation $R$ on X by: $\frac{a}{b}R\frac{c}{d}$ iff $ad = bc$. Show that R is an equivalence relation.}
+
+			Define $\sim$ as a relation R. An equivalence relation must satisfy: reflexivity, symmetry, and transitivity.
+
+			\underline{Reflexivity: $x \sim x\ .\ \forall x \in X$:}
+				Given some $x = \frac{p}{q} \in X$ we can see that $pq = pq \to \frac{p}{q}R\frac{p}{q}$, so $x \sim x$. 
+
+			\underline{Symmetry: $x \sim y \to y \sim x\ .\ \forall x, y \in X$:}
+				Given some $\frac{a}{b} \sim \frac{c}{d}$ we know that $ab = bc$ and $ab, bc \in \reals$. Due to the symmetry of equality of real numbers we can see that $bc = ab \to \frac{c}{d} \sim \frac{a}{b}$.
+
+			\underline{Transitivity: $x \sim y, y \sim z \to x \sim z\ .\ \forall x, y, z \in X$:} 
+				Given some $\frac{a}{b} \sim \frac{c}{d}, \frac{c}{d} \sim \frac{e}{f}$ we can see that $ad = bc, cf = de$. Since $b \neq 0, d \neq 0, f \neq 0$ we know that $ad = bc \to a = \frac{bc}{d}$ and $cf = de \to e = \frac{cf}{d}$. Thus:
+
+				\[
+					af = \frac{bc}{d} f
+					= b \frac{cf}{d}
+					= be \qed
+				\]
+
+	
+
+\end{document}

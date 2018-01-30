@@ -34,27 +34,64 @@
 	\section{}
 		\textit{Let X = \{1, 2, a\}. Find the power set of X, $P(X)$.}
 
+		% Power sets are bit strings! Number each element {e_1, e_2, ..., e_n} and the set of all subsets either includes e_i or does not include e_i. Therefore each e_i is a boolean on or off, 0 or 1, and the power set can be thought of as all bit strings of length n. There are obviously 2^n of these because each position is either on or off. 
+
+		$P(X) = \{\emptyset, \{1\}, \{2\}, \{1, 2\}, \{a\}, \{1, a\}, \{2, a\}, \{1, 2, a\}\}$
+
 	\section{}
 		\textit{For each $n \in \naturals$, let $A_n = \{(n + 1)k : k \in \naturals\}$}
-
 		\subsection*{a)}
-		\textit{What is $A_1 \cap A_2$?}
+
+			\textit{What is $A_1 \cap A_2$?}
+
+				$A_1 = \{2k : k \in \naturals\}$, $A_2 = \{3k : k \in \naturals\}$, so $A_1 \cap A_2$ is the set of all natural numbers divisible by both 2 and 3. This is the set of all numbers that are divisible by 6, which can be represented by $\{6k = (5 + 1)k : k \in \naturals\} = A_5$.
+		
 		\subsection*{b)}
-		\textit{Determine the sets $\cup\{A_n : n \in \naturals \}$ and $\cap\{A_n : n \in \naturals\}$.}
+			\textit{Determine the sets $\cup\{A_n : n \in \naturals \}$ and $\cap\{A_n : n \in \naturals\}$.}
+
+				$\cup\{A_n : n \in \naturals \} = \naturals - \{1\}$ because every natural number greater than one can be written as $mk$ where $m > 1 \in \naturals$ and $k \in \naturals$. Similarly, $\cap\{A_n : n \in \naturals\} = \emptyset$ because no natural number is divisible by every natural number. 
 
 	\section{}
 		\textit{Let A and B be two sets. Prove that $A \subseteq B$ iff $A \cap B = A$}
 
-	\section{}
-		\textit{Let A, B, and C be arbitrary sets. Prove that $A \cap (B \cup C) = (A \cap B)\cup (A \cap C)$.}
+		First we will show that if $A \subseteq B$ then $A \cap B = A$. To do so, we must show that $A \subseteq A \cap B$ and $A \cap B \subseteq A$. Given any element $a \in A$, we know that $a \in B$ since $A \subseteq B$. Thus, $a \in A \cap B$, which implies that $A \subseteq A \cap B$. Similarly, given an element $a \in A \cap B$, it must also be in A by the definition of intersection, so $A \subseteq A \cap B$. 
+
+		Second we will show that if $A \cap B = A$ then $A \subseteq B$. Given any element $a \in A$, we know that $a \in A \cap B$, which implies $a \in B$. Thus, $A \subseteq B$. 
+
+		% If ∀x ∈ X, x ∈ Y , we say X is a subset of Y
 
 	\section{}
-		\textit{Let $\naturals$ be the set of natural numbers, and $|$ be the relation of divisibility (i.e. we say $y \in \naturals$ divides $x \in \naturals$, denoted by $y|x$, if there exists an integer n such that $x = ny$). Prove that $|$ is an ordering relation on $\integers$}
+		\textit{Let A, B, and C be arbitrary sets. Prove that $A \cap (B \cup C) = (A \cap B) \cup (A \cap C)$.}
+
+		First we will show that if an arbitrary $x \in A \cap (B \cup C)$ then $x \in (A \cap B)\cup (A \cap C)$. If $x \in A \cap (B \cup C)$, we know $x \in A$ and $x \in B \cup C$. $x \in B \cup C$ implies $x \in B$ or $x \in C$. Since in either case we know $x \in A$, we can conclude that $x \in (A \cap B) \cup (A \cap C)$.
+
+		Second we will show that if an arbitrary $x \in (A \cap B) \cup (A \cap C)$ then $x \in A \cap (B \cup C)$. $x \in (A \cap B) \cup (A \cap C)$ means that $x \in A \cap B$ or $x \in A \cap C$. In either case $x \in A$, and depending on the case $x \in B$ or $x \in C$. Thus we can conclude that $x \in (A \cap B) \cup (A \cap C)$.
+
+	\section{}
+		\textit{Let $\naturals$ be the set of natural numbers, and $|$ be the relation of divisibility (i.e. we say $y \in \naturals$ divides $x \in \naturals$, denoted by $y|x$, if there exists an integer n such that $x = ny$). Prove that $|$ is an ordering relation on $\naturals$}
+
+			\underline{Reflexivity}: Since 1 is the multiplicative identity in the natural numbers, $x = 1 \cdot x \forall x \in \naturals$. Therefore, 1 is the integer that shows that $x = nx$ for all x. In other words $x | x \forall x \in \naturals$, so $|$ is reflexive over the natural numbers.
+
+			\underline{Anti-symmetry}: consider $x, y \in \naturals$ where $x | y$ and $y | x$. $x = my$ and $y = nx$ for some $m, n \in \integers$. But by substituting we can see that $x = my = mnx$ which implies $mn = 1$. Thus we know that $x = y$ and $|$ is anti-symmetric over the natural numbers.
+
+			\underline{Transitivity}: Consider $x, y, z$ such that $x | y, y | z$. Thus $y = nx$, and $z = my$ for integers $m, n$. But by substituting we can see $z = my = mnx$, and $mn \in \integers$, so $x | z$. Thus $|$ is transitive over the natural numbers. 
+
+			Therefore, $|$ is an ordering relation because it satisfies reflexivity, anti-symmetry, and transitivity. 
 
 	\section{}
 		\textit{Let $\leq$ be an ordering relation on the set X. We define the inverse of $\leq$, denoted by $\geq$ , as follows: $\forall x, y \in X, x \geq y\ \text{iff}\ y \leq x$. Prove that $\geq$ is an ordering relation on X.}
 
+			\underline{Reflexivity}: Consider any $x \in X$. Since $x \leq x$ by the reflexivity of $\leq$, we know that $x \geq x$ by the def'n of $\geq$. Thus, $\geq$ is reflexive over X.
+
+			\underline{Anti-symmetry}: consider any $x, y \in X$ where $x \geq y$ and $y \geq x$. Note that $x \geq y \rightarrow y \leq x$ and $y \geq x \rightarrow x \leq y$. Since we know $x \leq y, y \leq x$ we can say $x = y$ by the anti-symmetry of $\leq$. Thus we know that $x = y$ and $\geq$ is anti-symmetric over X.
+
+			\underline{Transitivity}: Consider $x, y, z$ such that $x \geq y, y \geq z$. Note that $x \geq y \rightarrow y \leq x$, and $y \geq z \rightarrow z \leq y$. By the transitivity of $\leq$ we know that $z \leq x$, and by the def'n of $\geq$ this shows that $x \geq z$. Since $x \geq z$ we know $\geq$ is transitive over X. 
+
+			Therefore, $\geq$ is an ordering relation because it satisfies reflexivity, anti-symmetry, and transitivity. 
+
 	\section{}
 		\textit{Let $(X,\leq)$ be a totally-ordered space and $Y \subseteq X$ an nonempty subset of X. Let $\alpha$ be a lower bound of Y and $\beta$ an upper bound of Y. Prove that $\alpha \leq \beta$.}
+
+			$\alpha$ is a lower bound of Y if $\alpha \leq y\ \forall y \in Y$. Similarly $\beta$ is an upper bound of Y if $y \leq \beta\ \forall y \in Y$. Since $Y$ is nonempty, we know there exists some $y \in Y$ such that $\alpha \leq y$ and such that $y \leq \beta$. By the transitivity of $\leq$ we can see that $\alpha \leq \beta \qed$. 
 
 \end{document}
