@@ -1,0 +1,98 @@
+\documentclass[]{article}
+
+\author{Rushi Shah}
+\date{\today}
+\title{Assignment 2}
+
+\setlength{\columnsep}{.75in}
+
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+\usepackage[margin=1in]{geometry}
+
+\usepackage{titling}
+\setlength{\droptitle}{-85pt}
+
+% Prefix section headers with "Problem"
+\renewcommand*{\thesection}{Problem~\arabic{section}}
+
+
+% Note: `\to` is a synonym for `\rightarrow`
+\newcommand{\integers}{\mathbb{Z}}
+\newcommand{\naturals}{\mathbb{N}}
+\newcommand{\reals}{\mathbb{R}}
+\newcommand{\complexes}{\mathbb{C}}
+\newcommand{\rationals}{\mathbb{Q}}
+\newcommand{\inv}{^{-1}}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+
+\begin{document}
+	\maketitle
+
+
+
+	\section{}
+		\textit{Prove that the set $S \equiv \{5, 10, 15, 20, \cdots\}$ is countable by constructing a one-to-one function from $S$ onto $\naturals$}
+
+			First note that $S = \{5, 10, 15, 20, \cdots\} = \{5k\ |\ k \in \naturals\}$. Thus, we can construct a one-to-one function $f : S \to \naturals$ by defining $f(5k) \mapsto k$. 
+
+
+	\section{}
+		\subsection*{Part a}
+			\emph{The union of two finite sets is finite.}
+
+			Consider two finite sets: $X$ with cardinality $n$ and $Y$ with cardinality $m$ such that WLOG $X = \{1,\ldots,n\}$ and $Y = \{1,\ldots,m\}$. Then there exists a function with $Dom(\{1,\ldots,n\} \cup \{1,\ldots,m\})$ that is bijective with $\{1, \ldots, n + m\}$
+			\[f(z) = \begin{cases}
+				z, z \in \{1,\ldots,n\} \\
+				n + z, z \in \{1,\ldots,m\}
+			\end{cases}\]
+			Thus, $X \cup Y$ is finite with cardinality $n + m$. 
+		\subsection*{Part b}
+			\emph{The union of a finite set and a countable set is countable.}
+
+			Consider a finite set that has cardinality n which (WLOG) can be stated as $X = \{1, \ldots, n\}$ and a countable set which (WLOG) can be stated as $Y = \naturals$. Then we can define a bijection $f : X \cup Y \to \naturals$
+
+			\[f(z) = \begin{cases}
+				z, z \in X \\
+				n + z, z \in Y
+			\end{cases}\]
+
+			Thus $X \cup Y$ is countable. 
+		\subsection*{Part c}
+			\emph{The union of two countable sets is countable.}
+
+			Consider two countable sets $X = \{x_1, x_2, \ldots\}$ and $Y = \{y_1, y_2, \ldots\}$. Then we can define a bijection $f : \naturals \to X \cup Y$
+
+			\[f(z) = \begin{cases}
+				x_z, z \text{ is even} \\
+				y_z, z \text{ is odd}
+			\end{cases}\]
+
+			Thus $X \cup Y$ is countable. 
+
+	\section{}
+		\begin{em}
+			Rational numbers are defined as real numbers that can be written in the form $\frac{m}{n}, n \neq 0$ with m and n integers without common factors. The set of rational numbers, $\rationals$, can be split into three parts, the positive ones $\rationals_+$, the negative ones $\rationals_-$, and the set that contains only zero $\{0\}$, $\rationals = \rationals_+ \cup \{0\} \cup \rationals_-$. Prove that $\rationals$ is countable.
+
+			Hint: We can first show that $\rationals_+$ is countable by constructing the function $f : \frac{m}{n} \mapsto (m, n), f : \rationals \mapsto U \subset \naturals \times \naturals$ that is one-to-one with $Dom(f) = \rationals_+$. $\naturals \times \naturals$ is countable, so U is countable, so $\rationals_+$ is countable. We then use the results in the previous problem 2. 
+		\end{em}
+
+		We can define $f_1 : \rationals_+ \to U_1 \subset \naturals \times \naturals$ by $f_1(\frac{m}{n}) \mapsto (m, n)$. Note that negative rationals can all be represented with positive denominators by multiplying any negative rational with a negative denominator by $\frac{-1}{-1} = 1$. Thus, we can define $f_2 : \rationals_- \to U_2 \subset \naturals \times \naturals$ by $f_2(\frac{m}{n}) \mapsto (|m|,n)$. With these two functions, we see that $\rationals_-, \rationals_+$ are both countable. Note that it is clear that $\{0\}$ is finite. Since the union of countable sets and the union of finite sets are countable by the previous problem, we can see that $\rationals = \rationals_+ \cup \{0\} \cup \rationals_-$ is countable.
+
+		% is (-3)/2 the same thing as 3/(-2) ? 
+
+	\section{}
+		\emph{Let $\rho$ be a metric on X. Prove that the following are also metrics}
+		\subsection*{Part a} 
+			$\rho_1 \equiv 5 \rho$ 
+		\subsection*{Part b}
+			$\rho_2 \equiv min\{1, \rho\}$
+
+	\section{}
+		\textit{Let X = (0, 1]. Define $\rho(x, y) \equiv \left | \frac{1}{x} - \frac{1}{y} \right |$. Prove that $\rho$ is a metric on X.}
+
+\end{document}
