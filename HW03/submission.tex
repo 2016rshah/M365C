@@ -89,10 +89,81 @@
 		\emph{Let $\rho$ be a metric on X. Prove that the following are also metrics}
 		\subsection*{Part a} 
 			$\rho_1 \equiv 5 \rho$ 
+
+			We must show that $\rho_1$ satisfies non-negativity, symmetry, and the triangle inequality. 
+
+			\underline{Non-negativity:}
+				Take arbitrary $x, y \in X$. We know that $\rho(x, y) = 0$ iff $x = y$. But $5 \rho(x, y) = 0$ iff $\rho(x, y) = 0$ so $\rho_1(x, y) = 0$ iff $x = y$. Similarly, $5\rho(x, y) \geq 0$ when $\rho(x, y) \geq 0$. Since $\rho(x, y) \geq 0\ \forall\ x, y \in X$, we know that $\rho_1$ satisfies non-negativity. 
+
+			\underline{Symmetry:}
+				Take arbitrary $x, y \in X$: 
+				\[\rho_1(x, y) = 5 \rho(x, y) = 5 \rho(y, x) = \rho_1(x, y)\]
+
+			\underline{Triangle inequality:} 
+				Take arbitrary $x, y, z \in X$:
+
+				\begin{align*}
+					\rho(x, y) &\leq \rho(x, z) + \rho(z, y) \\
+					5 \cdot \rho(x, y) &\leq 5 \cdot (\rho(x,z) + \rho(z, y)) \\
+					\rho_1(x, y) &\leq 5\rho(x, z) + 5\rho(z, y) \\
+					&\leq \rho_1(x, z) + \rho_1(z, y)
+				\end{align*}
+
 		\subsection*{Part b}
 			$\rho_2 \equiv min\{1, \rho\}$
 
+			\underline{Non-negativity:}
+
+				Since $0 < 1$, $\rho_2(x, y) = 0$ iff $\rho(x, y) = 0$ iff $x = y$. Similarly, since $\rho$ is never less than zero, and 1 is positive, $\rho_2(x, y) \geq 0\ \forall\ x, y\in X$. 
+
+			\underline{Symmetry:}
+
+				\[
+					\rho_2(x, y) = min(1, \rho(x, y)) = min(1, \rho(y, x)) = \rho_2(x, y)
+				\]
+
+			\underline{Triangle inequality:}
+
+				% TODO
+
+				We would like to show that $\rho_2(x, y) \leq \rho_2(x, z) + \rho_2(z, y)$
+
+				\begin{align*}
+					\rho_2(x, y) = min(1, \rho(x, y)) \\
+					\rho(x, y) \leq \rho(x, z) + \rho(z, y) \\
+				\end{align*}
+
 	\section{}
 		\textit{Let X = (0, 1]. Define $\rho(x, y) \equiv \left | \frac{1}{x} - \frac{1}{y} \right |$. Prove that $\rho$ is a metric on X.}
+
+			\underline{Non-negativity:}
+
+				If $x = y$ then $\rho(x, y) = \left | \frac{1}{x} - \frac{1}{y} \right | = \left | \frac{1}{x} - \frac{1}{x} \right | = \left | 0 \right | = 0$. 
+
+				If $\rho(x, y) = 0$ then $x = y$: 
+
+				\begin{align*}
+					\rho(x, y) &= 0 \\
+					\left | \frac{1}{x} - \frac{1}{y} \right | &= 0 \\
+					\frac{1}{x} &= \frac{1}{y} \\
+					x &= y
+				\end{align*}
+
+			\underline{Symmetry:}
+
+				\[\rho(x, y) = \left | \frac{1}{x} - \frac{1}{y}\right | = \left | - \left (\frac{1}{y} - \frac{1}{x} \right ) \right | = \left | \frac{1}{y} - \frac{1}{x} \right | = \rho(y, x)\]
+
+			\underline{Triangle inequality:}
+
+				% Absolute value triangle inequality: |a + b| ≤ |a| + |b|
+				For all $x, y, z \in X$, we must show that $\rho(x, y) \leq \rho(x, z) + \rho(z, y)$. 
+
+				\begin{align*}
+					\rho(x,y) &= \left | \frac{1}{x} - \frac{1}{y} \right | \\
+					&= \left | \frac{1}{x} - \frac{1}{z} + \frac{1}{z} - \frac{1}{y} \right | \\
+					&= \left | \left (\frac{1}{x} - \frac{1}{z}\right ) + \left (\frac{1}{z} - \frac{1}{y}\right ) \right | \\ 
+					&\leq \left | \frac{1}{x} - \frac{1}{z} \right | + \left | \frac{1}{z} - \frac{1}{y} \right | = \rho(x, z) + \rho(z, y)
+				\end{align*}
+
 
 \end{document}
