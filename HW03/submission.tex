@@ -128,10 +128,23 @@
 
 				We would like to show that $\rho_2(x, y) \leq \rho_2(x, z) + \rho_2(z, y)$
 
-				\begin{align*}
-					\rho_2(x, y) = min(1, \rho(x, y)) \\
-					\rho(x, y) \leq \rho(x, z) + \rho(z, y) \\
-				\end{align*}
+				\begin{enumerate}
+					\item $min(1, \rho(x, y)) = 1, min(1, \rho(x, z)) = 1, min(1, \rho(z, y)) = 1, 1 \leq 1 + 1$. 
+
+					\item $min(1, \rho(x, y)) = \rho(x, y), min(1, \rho(x, z)) = 1, min(1, \rho(z, y)) = 1, \rho(x, y) \leq \rho(x, z) + \rho(z, y)$ and $\rho(x, z) > 1, \rho(z, y) > 1$, so $\rho(x, y) \leq 1 + 1$. 
+
+					\item $min(1, \rho(x, y)) = 1, min(1, \rho(x, z)) = \rho(x, z), min(1, \rho(z, y)) = 1$. $\rho(x, z) > 1$ gives us $1 \leq 1 + \rho(x, z)$.
+
+					\item $min(1, \rho(x, y)) = 1, min(1, \rho(x, z)) = 1, min(1, \rho(z, y)) = \rho(z, y)$. WLOG from \#3.
+
+					\item $min(1, \rho(x, y)) = \rho(x, y), min(1, \rho(x, z)) = \rho(x, z), min(1, \rho(z, y)) = 1$, $\rho(x, y) \leq \rho(x, z) + \rho(z, y)$ and $\rho(z, y) > 1$, so $\rho(x, y) \leq \rho(x, z) + 1$ 
+
+					\item $min(1, \rho(x, y)) = \rho(x, y), min(1, \rho(x, z)) = 1, min(1, \rho(z, y)) = \rho(z, y)$ WLOG from \# 5
+
+					\item $min(1, \rho(x, y)) = 1, min(1, \rho(x, z)) = \rho(x, z), min(1, \rho(z, y)) = \rho(z, y)$, $1 < 1 + 1$ and $\rho(x, z) \geq 1, \rho(z, y) \geq 1$, so $1 < \rho(x, z) + \rho(z, y) $
+
+					\item $min(1, \rho(x, y)) = \rho(x, y), min(1, \rho(x, z)) = \rho(x, z), min(1, \rho(z, y)) = \rho(z, y)$, triangle inequality from $\rho$. 
+				\end{enumerate}
 
 	\section{}
 		\textit{Let X = (0, 1]. Define $\rho(x, y) \equiv \left | \frac{1}{x} - \frac{1}{y} \right |$. Prove that $\rho$ is a metric on X.}
