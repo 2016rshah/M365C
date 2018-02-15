@@ -119,8 +119,8 @@
 	\section{}
 		\textit{Let $(X, \rho)$ be a metric space and $S \subseteq X$ a subset. Denote by $\overline{S}$ the set of points of closure of S. Prove that $\overline{S}$ is a closed set.}
 
-		% TODO
+		% Tip: prove a subset is closed by showing it contains all the limit points (or equivalently the points of closure) of the superset
 
-		To prove that $\overline{S}$ is closed, we must prove that $\overline{S}^C$ is open. The elements of $\overline{S}^C$ are the elements such that $\lnot \forall \varepsilon > 0\ .\ \exists y \in B_\varepsilon(x)$ such that $y \in S$. 
+		$\overline{S}$ is the subset of S that contains all the points of closure of S. Since every limit point is also point of closure, we know that every limit point is in $\overline{S}$. Thus $S' \subseteq \overline{S}$, so by theorem 7.12 in the lecture notes we know that $\overline{S}$ is closed. 
 
 \end{document}
