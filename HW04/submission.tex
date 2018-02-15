@@ -1,0 +1,126 @@
+\documentclass[]{article}
+
+\author{Rushi Shah}
+\date{\today}
+\title{Assignment 4}
+
+\setlength{\columnsep}{.75in}
+
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+\usepackage[margin=1in]{geometry}
+
+\usepackage{titling}
+\setlength{\droptitle}{-85pt}
+
+% Prefix section headers with "Problem"
+\renewcommand*{\thesection}{Problem~\arabic{section}}
+
+
+% Note: `\to` is a synonym for `\rightarrow`
+\newcommand{\integers}{\mathbb{Z}}
+\newcommand{\naturals}{\mathbb{N}}
+\newcommand{\reals}{\mathbb{R}}
+\newcommand{\complexes}{\mathbb{C}}
+\newcommand{\rationals}{\mathbb{Q}}
+\newcommand{\inv}{^{-1}}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+
+\begin{document}
+	\maketitle
+
+	\section{}
+		\textit{
+		Let $(X, \rho)$ be a metric space, and $f : [0, \infty) \to [0, \infty)$ be an increasing concave function such that $f(r) = 0$ if and only if $r = 0$. 
+		Prove that $f \circ \rho$ is also a metric on X. 
+		Hint: $f$ being concave means that $\forall p, q \in [0, \infty)$, we have $f(tp + (1 - t)q) \geq tf(p) + (1 - t)f(q)\ \forall t \in [0, 1]$. We can show here that f is subadditive in the following way: (i) take q = 0, we can see that $f(tp) \geq tf(p)$; (ii) $f(p) + f(q) = f(\frac{p}{p + 1}(p + q)) + f(\frac{q}{p + q}(p + q)) \geq \frac{p}{p + q}f(p + q) + \frac{q}{p + q}f(p + q) = f(p + q)$}
+
+		To be a metric space, $f \circ \rho$ must satisfy the following axioms: non-negativity, symmetry, and the triangle inequality. 
+
+		\underline{Non-negativity:} 
+			Since, by definition, f is an increasing function that maps zero to zero, we know that $\forall\ p \in [0, \infty)\ .\ f(p) \in [0, \infty)\ \geq 0$. Similarly, since $\rho$ is a metric it is a function $\rho : X \times X \to [0, \infty)$. Thus, $\forall x, y \in X\ .\ f(\rho(x, y)) \in [0, \infty)$ so it satisfies non-negativity. 
+
+		\underline{Symmetry:} 
+			Consider arbitrary $x, y \in X$. Then, $\exists z \in [0, \infty)$ such that $\rho(x, y) = \rho(y, x) = z$. Because $f$ is a well-defined function, we know that $f(z) = f(z)$. Thus $\forall x, y \in X\ .\ f(\rho(x, y)) = f(\rho(y, x))$. Thus, $f \circ \rho$ satisfies symmetry. 
+
+		\underline{Triangle-inequality:} 
+			We first note that $f(\rho(x, y)) + f(\rho(y, z)) \geq f(\rho(x, y) + \rho(y, z))$ because f is subadditive. We also note that $\rho(x, y) + \rho(y, z) \geq \rho(x, z)$ because of the triangle inequality in the metric $\rho$. This implies that $f(\rho(x, y) + \rho(y, z)) \geq f(\rho(x, z))$ because $f$ is an increasing function. Thus we know that $f(\rho(x, z)) \geq f(\rho(x, z))$, which means that $f \circ \rho$ satisfies the triangle inequality. 
+
+	\section{}
+		\textit{Let $X = \reals^2$. Define $
+		\rho_1(x, y) 
+			\equiv |x_1 - y_1| + |x_2 - y_2|, 
+		\rho_2(x, y) 
+			\equiv \sqrt{|x_1 - y_1|^2 + |x_2 - y_2|^2}$ and $
+		\rho_{max}(x, y) 
+			\equiv max(|x_1 - y_1|, |x_2 - y_2|)$. 
+		Prove that $\rho_1, \rho_2, \rho_{max}$ are uniformly equivalent.}
+
+		Let $a = |x_1 - y_1|, b = |x_2 - y_2|$. Then we note that $\rho_1^2 = (a + b)^2 = a^2 + 2ab + b^2$, and similarly $\rho_2^2 = a^2 + b^2$. But since $(a - b)^2 \geq 0 \to a^2 + b^2 \geq 2ab$, we know that $2 \cdot \rho_2^2 \geq \rho_1^2$. Thus taking the square-root of both sides gives us the constant $c_1 = \sqrt{2}$ to show that $c_1 \rho_2 \geq \rho_1$. It is also clear that $a^2 + 2ab + b^2 \geq a^2 + b^2 \to \rho_1^2 \geq \rho_2^2$ which gives us the constant $c_1 = \sqrt{1} = 1$. Thus $\rho_1, \rho_2$ are uniformly equivalent.
+
+		We will now show that $\rho_1$ is uniformly equivalent to $\rho_{max}$. WLOG we can assume that $a \geq b$. Thus, $2a = 2 \rho_{max} \geq \rho_1$. Thus we know that the constant $c_1 = 2$ satisfies $c_1 \rho_{max} \geq \rho_1$. It is also clear that since $b \geq 0$, we know that the constant $c_2 = 1$ satisfies $c_2 \cdot \rho_1 \geq \rho_{max}$. Thus, $\rho_{max}$ and $\rho_1$ are uniformly equivalent. 
+
+		Since $\rho_1$ is uniformly equivalent to both $\rho_2$ and $\rho_{max}$, it is obvious that $\rho_2$ must be uniformly equivalent to $\rho_{max}$. 
+
+	\section{}
+		\textit{Consider $a, b \in \reals$. Prove the following statements}
+
+			\subsection*{a)} \textit{The set $X = (a, b)$, with the metric $\rho(x, y) = |x - y|$, is open}
+
+			Take arbitrary $c \in (a, b)$, and define $\epsilon = \frac{min(\rho(a, c), \rho(b, c))}{2}$ so $B_{\epsilon}(c) \subseteq (a, b)$ and thus $(a, b)$ is open.
+
+			\subsection*{b)} \textit{The set $X = [a, b]$, with the metric $\rho(x, y) = |x - y|$, is closed.}
+
+			We will show that $X^C = (- \infty, a) \cup (b, \infty)$ is open. Take arbitrary $c \in X^C$, then either $c < a$ or $c > b$. If $c < a$ then we can take $\epsilon = \frac{\rho(a, c)}{2}$ to get the ball $B_{\epsilon}(c) \subseteq (- \infty, a) \subseteq X^C$. Similarly if $c > b$ then we can take $\epsilon = \frac{\rho(b, c)}{2}$ to get the ball $B_{\epsilon}(c) \subseteq (b, \infty) \subseteq X^C$. Thus $X^C$ is open, which implies that $X$ is closed. 
+
+			\subsection*{c)} \textit{The set $X = (a, b]$, with the metric $\rho(x, y) = |x - y|$, is neither open nor closed.}
+
+			% Neither open nor closed means that it is not open and its complement is also not open. 
+
+			Since $b$ is the greatest element of the set, there is no positive $\varepsilon$ such that $b + \varepsilon \in (a, b]$. Thus $(a, b]$ cannot be open. 
+
+			However, $X^C = (-\infty, a] \cup (b, \infty)$ is also not open because no element of $(a, b)$ can be included in an open ball centered on a. Since $a \neq b$, we know that such an element exists, and therefore no satisfying ball can exist. Thus, since $X^C$ is not open, we know that $X$ cannot be closed. 
+
+	\section{}
+		\begin{em}
+			Let X be any non-empty set. We define $\rho : X \times X \to [0, \infty)$ as: 
+
+			\[
+				\rho(x, y) = \begin{cases}
+					0, if\ x = y \\
+					1, if\ x \neq y
+				\end{cases}
+			\]
+
+			Then it can be shown that $\rho$ is a metric on X. Therefore, $(X, \rho)$ is a metric space. Such a metric space is often called a discrete metric space. Let $(X, \rho)$ be a discrete metric space. Prove the following statements. 
+		\end{em}
+
+		\subsection*{i)}
+			\textit{An open ball in X is either a set with only one element (that is, a singleton) or all of X.}
+
+			Consider some open ball in X $B_r(x)$ with some center $x$. Because the radius of $B_r(x)$ must be positive, we know that it contains at least one element $x$. If it contains some $y \neq x$ that implies that the radius must be at least 1, since $\forall y \in x\ .\ x \neq y \to \rho(x, y) = 1$. But if the radius is at least one the fact that $\forall y \in x\ .\ x \neq y \to \rho(x, y) = 1$ implies that the open ball must also contain all of X. 
+
+		\subsection*{ii)}
+			\textit{All subsets of X are both open and closed.}
+
+			% A set is clopen if it is open and its complement is also open. 
+
+			Lemma: every subset of X is open. Consider some subset $S$ of $X$. Then we can take a ball with radius of $0 < \varepsilon < 1$, which will mean that this ball contains every element of X, but does not contain any element not in X. Thus, S is open. 
+
+			Second, consider the complement of a subset in X referred to as $S^C$. Note that $S^C = X - S \subseteq X$. Thus, by the previous lemma, we know that $S^C$ must be similarly open. 
+
+			Thus, any subset of X is clopen.  
+
+
+	\section{}
+		\textit{Let $(X, \rho)$ be a metric space and $S \subseteq X$ a subset. Denote by $\overline{S}$ the set of points of closure of S. Prove that $\overline{S}$ is a closed set.}
+
+		% TODO
+
+		To prove that $\overline{S}$ is closed, we must prove that $\overline{S}^C$ is open. The elements of $\overline{S}^C$ are the elements such that $\lnot \forall \varepsilon > 0\ .\ \exists y \in B_\varepsilon(x)$ such that $y \in S$. 
+
+\end{document}
