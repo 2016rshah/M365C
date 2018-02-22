@@ -78,6 +78,8 @@
 
 		Assume $x_n \to x$ in $\rho$, which means that $\forall \varepsilon > 0 . \exists N(\varepsilon) . \rho(x, x_n) \leq \varepsilon \forall n \geq N$. Also, since $\rho, \sigma$ are uniformly equivalent, we know that $\exists c > 0 . c \sigma \leq \rho$. 
 
-		We will proceed with a proof by contradiction. Assume that $x_n \to x$ in $\rho$, but $x_n \not \to x$ in $\sigma$. Thus, there must exist some $\varepsilon$ such that $\sigma(x, x_n) > \varepsilon$ for all $x_n$. However, we know that there exists some N such that $\rho(x, x_n) < \varepsilon$ for all $n > N$. But since $\sigma < c \cdot \rho$ for some $c > 0$, we have a contradiction. Thus, it must be the case that $x_n \to x$ in $\sigma$ as well. 
+		From \#2, we know that there exists $N$ such that $\rho(x, x_n) = 0$ for all $n \geq N$. But since $\rho, \sigma$ are uniformly equivalent, there exists some constant $c > 0$ such that $\sigma \leq \rho \cdot c$. But for $n > N$, $c \cdot \rho(x, x_n) = 0$ because $\rho(x, x_n) = 0$. Thus since $\sigma(x, x_n) \geq 0$ (since its a metric) and  $\sigma(x, x_n) \leq 0$ (as shown above) we know that $\sigma(x, x_n) = 0 \forall n \geq N$ (by anti-symmetry). Thus, again by the lemma proved in question 2, $x_n \to x$ in $\sigma$. 
+
+		% We will proceed with a proof by contradiction. Assume that $x_n \to x$ in $\rho$, but $x_n \not \to x$ in $\sigma$. Thus, there must exist some $\varepsilon$ such that $\sigma(x, x_n) > \varepsilon$ for all $x_n$. However, we know that there exists some N such that $\rho(x, x_n) < \varepsilon$ for all $n > N$. But since $\sigma < c \cdot \rho$ for some $c > 0$, we have a contradiction. Thus, it must be the case that $x_n \to x$ in $\sigma$ as well. 
 
 \end{document}
