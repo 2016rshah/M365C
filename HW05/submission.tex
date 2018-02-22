@@ -1,0 +1,83 @@
+\documentclass[]{article}
+
+\author{Rushi Shah}
+\date{\today}
+\title{Assignment 5}
+
+\setlength{\columnsep}{.75in}
+
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+\usepackage[margin=1in]{geometry}
+
+\usepackage{titling}
+\setlength{\droptitle}{-85pt}
+
+% Prefix section headers with "Problem"
+\renewcommand*{\thesection}{Problem~\arabic{section}}
+
+
+% Note: `\to` is a synonym for `\rightarrow`
+\newcommand{\integers}{\mathbb{Z}}
+\newcommand{\naturals}{\mathbb{N}}
+\newcommand{\reals}{\mathbb{R}}
+\newcommand{\complexes}{\mathbb{C}}
+\newcommand{\rationals}{\mathbb{Q}}
+\newcommand{\inv}{^{-1}}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+
+\begin{document}
+	\maketitle
+
+	\section{}
+		\textit{Prove directly, using the definition of convergence, that each of the following sequences converges in the metric space $(X, \rho)$ with $X = \reals$ and $\rho(x, y) = |x - y|$:}
+
+		\subsection*{Part a}
+		\textit{The sequence $\{x_n\}$ with $x_n = 1 + \frac{10}{\sqrt{n}}$}
+
+		Proof that $x_n \to 1$. Consider some $\varepsilon > 0$, then we want to show that there exists some N such that any $n > N$ satisfies $|1 + \frac{10}{\sqrt{n}} - 1| < \varepsilon$. We can select this $N = (\frac{10}{\varepsilon})^2$ to satisfy the inequality. 
+
+		\subsection*{Part b}
+		\textit{The sequence $\{x_n\}$ with $x_n = 3 + 2^{-n}$}
+
+		Proof that $x_n \to 3$. Consider some $\varepsilon > 0$, then we want to show that there exists some N such that any $n > N$ satisfies $|3 + 2^{-n} - 3| < \varepsilon$. We can select this $N = log_2(\frac{1}{\varepsilon})$ to satisfy the inequality. 
+
+		\subsection*{Part c} 
+		\textit{The sequence $\{x_n\}$ with $x_n = \frac{2n + 3}{n + 1}$}
+
+		% TODO
+		Proof that $x_n \to 2$. Consider some $\varepsilon > 0$, then we want to show that there exists some N such that any $n > N$ satisfies $|2 - \frac{2n + 3}{n + 1}| < \varepsilon$. Note that \(
+			\frac{2n + 3}{n + 1} = 
+			\frac{n}{n}\cdot \frac{2 + \frac{3}{n}}{1 + \frac{1}{n}} = 
+			\frac{2 + \frac{3}{n}}{1 + \frac{1}{n}} = 
+			\frac{2}{1 + \frac{1}{n}} + \frac{\frac{3}{n}}{1 + \frac{1}{n}} = 
+			\frac{2}{1 + \frac{1}{n}} + \frac{3}{n + 1}
+		\)
+
+		It is clear that $x_n = \frac{3}{n + 1} \to 0$ with $N_1 = \frac{3}{\varepsilon} - 1$, and $x_n = \frac{1}{n} \to 0$ with some $N_2 = \frac{1}{\varepsilon}$. Thus we can take $N = max(N_1, N_2)$ to see that $\frac{2}{1 + \frac{1}{n}} + \frac{3}{n + 1} \to 2$. 
+
+	\section{}
+		\textit{Let $(X, \rho)$ be a discrete metric space, and $\{x_n\}$ a sequence in X. Prove that $x_n \to x$ if and only if there exists a $N \in \naturals$ such that $x_n = x \forall n \geq N$.}
+
+		\underline{If $x_n \to x$ then there exists a $N \in \naturals$ such that $x_n = x \forall n \geq N$:}
+
+		$x_n \to x$ implies that $\forall \varepsilon > 0 . \exists N(\varepsilon) . \rho(x, x_n) \leq \varepsilon \forall n \geq N$. We will show that this $N$ satisfies the property that $x_n = x \forall n \geq N$ by contradiction. Assume it did not, so there would exist some $n \geq N$ such that $x_n \neq x$, which means that $\rho(x_n, x) = 1$ because $\rho$ is a discrete metric space. But, then we could select any $\varepsilon > 1$ such that $\varepsilon > \rho(x, x_n)$, which contradicts our hypothesis. 
+
+		\underline{If there exists a $N \in \naturals$ such that $x_n = x \forall n \geq N$ then $x_n \to x$:}
+
+		Since $x_n = x \forall n \geq N$, we know that $\rho(x_n, x) = 0 \forall n \geq N$ because $\rho$ is the discrete metric. Thus, for any positive $\varepsilon$, it is clear that $\rho(x, x_n) < \varepsilon$, which implies that $x_n \to x$. 
+
+	\section{}
+		\textit{Let $\rho, \sigma$ be two uniformly equivalent metrics defined on X and $\{x_n\}$ be a sequence in X. Show that $x_n \to x$ in metric $\rho$ iff $x_n \to x$ in metric $\sigma$.}
+
+		
+
+		Assume $x_n \to x$ in $\rho$, which means that $\forall \varepsilon > 0 . \exists N(\varepsilon) . \rho(x, x_n) \leq \varepsilon \forall n \geq N$. Also, since $\rho, \sigma$ are uniformly equivalent, we know that $\exists c > 0 . c \sigma \leq \rho$. 
+
+		We will proceed with a proof by contradiction. Assume that $x_n \to x$ in $\rho$, but $x_n \not \to x$ in $\sigma$. Thus, there must exist some $\varepsilon$ such that $\sigma(x, x_n) > \varepsilon$ for all $x_n$. However, we know that there exists some N such that $\rho(x, x_n) < \varepsilon$ for all $n > N$. But since $\sigma < c \cdot \rho$ for some $c > 0$, we have a contradiction. Thus, it must be the case that $x_n \to x$ in $\sigma$ as well. 
+
+\end{document}
