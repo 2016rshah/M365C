@@ -1,0 +1,88 @@
+\documentclass[]{article}
+
+\author{Rushi Shah}
+\date{\today}
+\title{Assignment 6}
+
+\setlength{\columnsep}{.75in}
+
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+\usepackage[margin=1in]{geometry}
+
+\usepackage{titling}
+\setlength{\droptitle}{-85pt}
+
+% Prefix section headers with "Problem"
+\renewcommand*{\thesection}{Problem~\arabic{section}}
+
+
+% Note: `\to` is a synonym for `\rightarrow`
+\newcommand{\integers}{\mathbb{Z}}
+\newcommand{\naturals}{\mathbb{N}}
+\newcommand{\reals}{\mathbb{R}}
+\newcommand{\complexes}{\mathbb{C}}
+\newcommand{\rationals}{\mathbb{Q}}
+\newcommand{\inv}{^{-1}}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+
+\begin{document}
+	\maketitle
+
+	\section{}
+		\textit{Prove directly, by verifying the definition, that each of the following sequences is a Cauchy sequence in the metric space $(X, \rho)$ with $X = \reals$ and $\rho(x, y) = |x - y|$:}
+
+		\subsection*{Part a}
+		\textit{The sequence $\{x_n\}$ with $x_n = \frac{1}{\sqrt{n}}$}
+
+		Note that $|a_n - a_m| = |\frac{1}{\sqrt{n}} - \frac{1}{\sqrt{m}}| \leq |\frac{1}{\sqrt{n}}| + |\frac{1}{\sqrt{m}}| \leq \frac{1}{\sqrt{n}} + \frac{1}{\sqrt{m}}$ because $n, m > 0$. Thus, we need to find N such that $n, m > N$ solves the inequality $\frac{1}{\sqrt{n}} + \frac{1}{\sqrt{m}} \leq \varepsilon\ \forall \varepsilon > 0$. The smallest such $n, m$ can be taken to be $N$, so we need to solve the inequality $\frac{1}{\sqrt{N}} + \frac{1}{\sqrt{N}} \leq \varepsilon$ which gives us $\frac{2}{\varepsilon} \leq \sqrt{N}$. Thus, we can select $N > \frac{4}{\varepsilon^2}$ which demonstrates that the sequeunce is Cauchy. 
+
+		\subsection*{Part b}
+		\textit{The sequence $\{x_n\}$ with $x_n = \frac{cos\ n}{2n}$}
+
+		Note that $|a_n - a_m| = |\frac{cos\ n}{2n} - \frac{cos\ m}{2m}| \leq |\frac{cos\ n}{2n}| + |\frac{cos\ m}{2m}| \leq \frac{1}{2n} + \frac{1}{2m}$, where the last inequality holds because of the possible values of $cos$ and the fact that $n, m > 0$. We want to select N such that $n, m \geq N$ satisfy $\frac{1}{2n} + \frac{1}{2m} < \varepsilon\ \forall \varepsilon > 0$. We can take the smallest such $n, m = N$ to get $\frac{1}{2N} + \frac{1}{2N}  = \frac{2}{2N} = \frac{1}{N} < \varepsilon\ \to \frac{1}{\varepsilon} < N$. Thus, by selecting $N > \frac{1}{\varepsilon}$ we demonstrate the sequence is Cauchy. 
+
+	\section{}
+		\textit{Let $(X, \sigma)$ be a metric space and suppose that $\{x_n\}$ and $\{y_n\}$ are two Cauchy sequences in X. Prove that the sequence of real numbers $\{s_n\}$, defined as $s_n = \sigma(x_n, y_n)$, converges in the usual Euclidean metric $\rho(x, y) = |x - y|$}
+
+		We want to show that there exists some $N$ such that for any $\varepsilon > 0$ and any $n, m \geq N$ we know that $\rho(s_n, s_m) \leq \varepsilon$. This can be transformed as follows:
+		\[\rho(s_n, s_m) = \rho(\sigma(x_n, y_n), \sigma(x_m, y_m)) = |\sigma(x_n, y_n) - \sigma(x_m, y_m)|\]
+
+		But note that $x_n$ can be arbitrarily close to $x_m$ with sufficiently large $n, m > N_1$and $y_n$ can be arbitrarily close to $y_m$ with sufficiently large $n, m > N_2$. Thus, for any $\varepsilon > 0$, we can take the corresponding $N = max(N_1, N_2)$ and $n, m > N$ to get $|\sigma(x_n, y_n) - \sigma(x_m, y_m)| < \varepsilon$ as desired. Thus, $s_n$ is a Cauchy sequence in $\reals$. Since the reals are complete, we know that $\{s_n\}$ converges. 
+
+		% Since $x_n$ is Cauchy, $\forall \varepsilon > 0 . \exists N_1 . \rho(x_n, x_m) \leq \varepsilon\ \forall n, m \geq N_1$. Similarly, since $y_n$ is Cauchy, $\forall \varepsilon > 0 . \exists N_2 . \rho(y_n, y_m) \leq \varepsilon\ \forall n, m \geq N_2$. We would like to show that $\forall \varepsilon > 0 . \exists N . |\sigma(x_n, y_n) - z| \leq \varepsilon\ \forall n, m \geq N$ where z is the limit of the sequence $s_n$. But we can take $N = max(N_1, N_2)$ to get $\forall \varepsilon\ .\ \forall n, m > N\ .\ \sigma(x_n, x_m) < \varepsilon \land \sigma(y_n, y_m) < \varepsilon$.  
+
+		% TODO
+
+	\section{}
+		\textit{Let $(X, \sigma)$ be a metric space and $\{x_n\}$ a Cauchy sequence in X. Let $\{y_n\}$ be another sequence in X such that $\sigma(x_n, y_n) \to 0$ in the standard euclidean metric. Prove that:}
+
+		\subsection*{Part a}
+		\textit{$\{y_n\}$ is a Cauchy sequence.}
+		Since $x_n$ is Cauchy, $\forall \varepsilon > 0 . \exists N_1 . \rho(x_n, x_m) \leq \varepsilon\ \forall n, m \geq N_1$. Similarly, since $\sigma(x_n, y_n)$ converges to 0, we know there exists some $N_2$ such that $\forall \varepsilon\ .\ \sigma(x_n, y_n) \leq \varepsilon \forall n \geq N_2$. Take $N = max(N_1, N_2)$, then we can see that for any $\varepsilon > 0$ and $n, m \geq N$, $\sigma(y_n, y_m) \leq \sigma(x_n, x_m) \leq \varepsilon$ so $\{y_n\}$ is Cauchy. 
+
+		\subsection*{Part b}
+		\textit{$y_n \to y \in X$ iff $x_n \to y \in X$ for the same y. }
+
+		First we will show that if $x_n \to y \in X$ then $y_n \to y \in X$. Since $x_n \to y \in X$ we know that there is some $N_1$ such that $\forall \varepsilon\ .\ \forall n > N_1\ .\ \sigma(x_n, y) < \varepsilon$. But since we also know that $\sigma(x_n, y_n) \to 0$, we know that there is some $N_2$ such that $\forall \varepsilon\ .\ \forall n > N_2\ .\ \sigma(x_n, y_n) < \varepsilon$. Thus, we can see that by taking $N = max(N_1, N_2)$, $x_n$ is arbitrarily close to $y$ and $y_n$ is arbitrarily close to $x_n$ so $y_n$ is arbitrarily close to $y$ for any $n > N$. Thus $y_n \to y$.  
+
+		WLOG we can see that if $y_n \to y \in X$ then $x_n \to y \in X$. 
+
+	\section{}
+		\textit{Let X be a non-empty set and $\rho$ the discrete metric on X, meaning that $\forall x, y \in X$, we have 
+		\[
+		\rho(x, y) = \begin{cases}
+			0, x = y \\
+			1, x \neq y
+		\end{cases}
+		\] 
+		Show that $(X, \rho)$ is a complete metric space.}
+
+		Consider an arbitrary Cauchy sequence $\{x_n\}$ in X. Then $\forall \varepsilon > 0\ .\ \exists N\ .\ \forall n, m > N\ .\ \rho(x_n, x_m) < \varepsilon$. But since $\rho(x_n, x_m)$ is either 0 or 1, and we can select $\varepsilon < 1$ we know that there exists some N such that $\rho(x_n, x_m) = 0$ for all $n, m > N$. Thus, we have proven that for every Cauchy sequence there exists some N such that the sequence must converge to $x_N \in X$.
+
+
+\end{document}
