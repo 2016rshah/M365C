@@ -1,0 +1,121 @@
+\documentclass[]{article}
+
+\author{Rushi Shah}
+\date{\today}
+\title{Assignment 7}
+
+\setlength{\columnsep}{.75in}
+
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+\usepackage[margin=1in]{geometry}
+
+\usepackage{titling}
+\setlength{\droptitle}{-85pt}
+
+% Prefix section headers with "Problem"
+\renewcommand*{\thesection}{Problem~\arabic{section}}
+
+
+% Note: `\to` is a synonym for `\rightarrow`
+\newcommand{\integers}{\mathbb{Z}}
+\newcommand{\naturals}{\mathbb{N}}
+\newcommand{\reals}{\mathbb{R}}
+\newcommand{\complexes}{\mathbb{C}}
+\newcommand{\rationals}{\mathbb{Q}}
+\newcommand{\inv}{^{-1}}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+
+\begin{document}
+	\maketitle
+
+	\section{}
+		\textit{Let $x, y \in \reals$ be such that $x \neq y$. Prove that $\exists \varepsilon > 0$ such that $B_{\varepsilon}(x) \cap B_{\varepsilon}(y) = \emptyset$}
+
+		Because $x \neq y$ we know that there exists some $\varepsilon' > 0$ such that $\rho(x, y) > \varepsilon'$. Then by taking any $\varepsilon = \varepsilon' / 2$ we can see that $B_{\varepsilon}(x) \cap B_{\varepsilon}(y) = \emptyset$. We can prove this claim by contradiction: assume there was some element $z \in B_{\varepsilon}(x) \cap B_{\varepsilon}(y)$. This implies that $\rho(x, z) < \varepsilon$ and $\rho(z, y) < \varepsilon$, so $\rho(x, y) + \rho(y, z) < 2 \varepsilon$. But since we know $\rho(x,y) = 2 \varepsilon$, the strict inequality for $\rho(x, y) + \rho(y, z) < 2 \varepsilon$ violates the triangle inequality between x, y, and z. 
+
+	\section{}
+		\textit{Let $X = [0, \infty)$ and take $\mathcal{O}_k = (-10, k), k \geq 1$. Prove that:}
+
+		\subsection*{Part i}
+			\textit{$O = \{\mathcal{O}_k\}_{k = 1}^\infty$ is a open cover of X;}
+
+			Note that we say that $\{\mathcal{O}_\alpha\}_{\alpha \in A}$ is an open cover of X if $X \subseteq \bigcup_{\alpha \in A}\mathcal{O}_\alpha$. 
+
+			Consider an arbitrary element $x \in X$. Because we know that x is a real number greater than or equal to zero, we know that we can take $k = x + 1$ to get $\mathcal{O}_k = (-10, x + 1)$. For this arbitrary value of x and this value of k, it is clear that $x \in \mathcal{O}_k$, so we know that \[X \subseteq \bigcup_{k \in [1, \infty)} \mathcal{O}_{k}\]
+			Thus O is an open cover of X. 
+
+		\subsection*{Part ii}
+			\textit{O has no finite subcover, i.e. X is not compact.}
+
+			Proof by contradiction: assume there exists some finite subcover of O:
+			\[\exists \{\alpha_k\}_{k = 1}^K \subseteq [1, \infty)\ s.t.\ X \subseteq \bigcup_{k =1}^K \mathcal{O}_{\alpha_k}\]
+
+			In other words, there is a finite subsequence of $[1, \infty)$ such that the union of each of the $\mathcal{O}$s is also a cover of X. However, it is evident that by the definition of $\mathcal{O}_k = (-10, k)$ that $K+1 \notin \bigcup_{k =1}^K \mathcal{O}_{\alpha_k}$. Thus $X \not \subseteq \bigcup_{k =1}^K \mathcal{O}_{\alpha_k}$, so O has no finite subcover and X is not compact. 
+
+	\section{}
+		\textit{Let $(X, \rho)$ be a metric space with $\rho$ the discrete metric. Prove that $(X, \rho)$ is compact if and only if X is a finite set.}
+
+		\underline{If X is a finite set then $(X, \rho)$ is compact} % TODO
+
+		Consider any infinite sequence in X. Because there are an infinite number of terms in the sequence, but only a finite number of elements in X, there is some element $x \in X$ for each sequence that appears infinitely many times in that sequence. Thus there obviously exists a subsequence that converges to x for any sequence. Therefore, the $(X, \rho)$ is sequentially compact, which implies it is compact. 
+
+		% https://math.stackexchange.com/questions/1976792/prove-that-any-finite-set-in-a-metric-space-is-compact
+
+		\underline{If $(X, \rho)$ is compact then X is a finite set} % TODO
+
+		Proof by contradiction: assume $(X, \rho)$ is a compact, X is an infinite set, and $\rho$ is the discrete metric. But because X is infinite, there exists a sequence $\{x_n\}$ such that $x_n \neq x_{n'}$ for all $n' < n$. This implies that $\rho(x_n, x_{n'}) = 1$ for all $n > n'$ for all $n'$. No subsequence of this sequence can converge (because we can always choose $\varepsilon < 1$), and therefore $(X, \rho)$ cannot be sequentially compact, and since we are in a topology this implies $(X, \rho)$ cannot be compact. This contradicts our assumption, and thus we know that $X$ cannot be infinite. 
+
+	\section{}
+		\textit{Let $(X, \sigma)$ be a metric space, and $f(x) : Dom(f) = X \mapsto \reals$ be a continuous function (under the usual Euclidean metric $\rho(x, y) = |x - y| $ on $\reals$). Prove that $|f(x)|$ is a continuous function on $Dom(f)$}
+
+		Since $f$ is continuous, we know that for any $\varepsilon > 0$ and $x \in Dom(f)$ we can select $\delta(\varepsilon, x)$ such that $\sigma(x, y) \leq \delta$ implies that $\rho(f(x), f(y)) \leq \varepsilon$. 
+
+		We want to show that for any $\varepsilon > 0$ and $x \in Dom(f)$ we can select $\delta(\varepsilon, x)$ such that $\sigma(x, y) \leq \delta$ implies that $\rho(|f(x)|, |f(y)|) \leq \varepsilon$. If we select $\delta(\varepsilon, x)$ in the same way for $|f(x)|$ as we did for $f(x)$ we can see that 
+		\begin{align*}
+			\rho(|f(x)|, |f(y)|) &= ||f(x)| - |f(y)|| \\
+			&\leq |f(x) - f(y)| \\ % Use the alternate triangle inequality here http://www.mathwords.com/t/triangle_inequality_with_absolute_value.htm
+			&\leq \varepsilon
+		\end{align*}
+
+		and thus $|f(x)|$ is clearly a continuous function on $Dom(f)$. 
+
+	\section{}
+		\textit{Let $(X, \sigma)$ be a metric space, $f : X \to \reals$ and $f : X \to \reals$ be both Lipschitz on X (under the usual euclidean metric $\rho(x, y) = |x - y|$ on $\reals$). Prove that $f + g$ is also Lipschitz on X.}
+
+		Since $f$ is Lipschitz, we know that there exists some $M_f$ such that $\rho(f(x), f(y)) \leq M \sigma(x, y)$ for all $x, y \in Dom(f)$. Since $g$ is also Lipschitz, we know that there exists some $M_g$ such that $\rho(g(x), g(y)) \leq M \sigma(x, y)$ for all $x, y \in Dom(g)$. Now consider $M = 2 * max(M_f, M_g)$. 
+		\begin{align*}
+			\rho(f(x) + g(x), f(y) + g(y)) &= |f(x) + g(x) - (f(y) + g(y))|& \\
+			&= |f(x) - f(y) + g(x) - g(y)| \\
+			&\leq |f(x) - f(y)| + |g(x) - g(y)| \\
+			&\leq \rho(f(x), f(y)) + \rho(g(x), g(y)) \\
+			&\leq \frac{M}{2}\sigma(x, y) + \frac{M}{2}\sigma(x, y) \\
+			&\leq M \sigma(x, y) 
+		\end{align*}
+
+		Thus we have found some $M$ such that $\rho(f(x) + g(x), f(y) + g(y)) \leq M \sigma(x, y)$ for all $x, y \in Dom(f + g)$, so $f + g$ is Lipschitz on X. 
+
+	\section{}
+		\textit{Let $(X, \sigma)$ be a metric space, $f : X \to \reals$ and $g : X \to \reals$ be both uniformly continous on X (under the usual Euclidean metric $\rho(x, y) = |x - y|$ on $\reals$). Prove that $f + g$ is also uniformly continuous on X.}
+
+		Since $f$ is uniformly continuous, we know that $\forall \varepsilon > 0, \exists \delta_f(\varepsilon) > 0$ such that $\sigma(x, y) \leq \delta_f$ implies $\rho(f(x), f(y)) \leq \varepsilon$ for all $x, y \in Dom(f)$. 
+
+		Since $g$ is also uniformly continuous, we know that $\forall \varepsilon > 0, \exists \delta_g(\varepsilon) > 0$ such that $\sigma(x, y) \leq \delta_g$ implies $\rho(g(x), g(y)) \leq \varepsilon$ for all $x, y \in Dom(g)$. 
+
+		So consider an arbitrary $\varepsilon$ and take $\delta = min(\delta_f(\frac{\varepsilon}{2}), \delta_g(\frac{\varepsilon}{2}))$. Then 
+		\begin{align*}
+			\rho(f(x) + g(x), f(y) + g(y)) &= |f(x) + g(x) - (f(y) + g(y))|& \\
+			&= |f(x) - f(y) + g(x) - g(y)| \\
+			&\leq |f(x) - f(y)| + |g(x) - g(y)| \\
+			&\leq \rho(f(x), f(y)) + \rho(g(x), g(y)) \\
+			&\leq \frac{\varepsilon}{2} + \frac{\varepsilon}{2} \\
+			&\leq \varepsilon
+		\end{align*}
+
+		Thus given any $\varepsilon$ we are able to select a $\delta$ such that $\sigma(x, y) \leq \delta$ implies that $\rho(f(x) + g(x), f(y) + g(y)) \leq \varepsilon$. This means that $f + g$ is also uniformly continuous on X.
+
+\end{document}
