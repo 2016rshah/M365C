@@ -88,13 +88,34 @@
 	\section{}
 		\textit{Let $(X, \rho_X)$ and $(Y, \rho_Y)$ be two metric spaces, and $f : X \to Y$ a function with domain $Dom(f) = X$ and range $Ran(f) = Y$. Prove that $f$ is continuous if and only if $f^{-1}[\tilde{Y}]$ (the preimage of $\tilde{Y}$) is open for every open set $\tilde{Y}$ in Y.}
 
-		\underline{If $f$ is continuous, then $f^{-1}[\tilde{Y}]$ is open for every open set $\tilde{Y} \in Y$.}
+		% Try rewriting definition of continuity in terms of open balls. Because p(y, y_0) < epsilon means that that is an open ball with radius epsilon around y_0. So you can rewrite what continuous means in terms of open balls around things existing
 
-		Recall that if $\exists\ $ a limit point $a$ not in set $A$, then $A$ is open. Also recall that a limit point $a$ is a point such that $\exists\ $ a non-constant sequence of $\{a_n\} \subseteq A$ such that $\{a_n\} \to a$. Thus we must show that there exists $\{x_n\} \subseteq f^{-1}[\tilde{Y}]$ such that $\{x_n\} \to x$ where $x \notin f^{-1}[\tilde{Y}]$. Consider an open set $\tilde{Y} \in Y$. Since this set is open, there exists some non-constant sequence $\{y_n\} \to y$ where $y \notin \tilde{Y}$ but $\{y_n\} \subseteq \tilde{Y}$. Thus, we can take the preimage of all $\{y_n\}$ to be a non-constant sequence $\{x_n\} \subseteq f^{-1}[\tilde{Y}]$. But, it is also clear that $x = f^{-1}(y) \notin f^{-1}[\tilde{Y}]$ because $y \notin \tilde{Y}$. Because $f$ is continuous, we know that$\{x_n\} \to x$ where $x \notin f^{-1}[\tilde{Y}]$. Thus, we know that $f^{-1}[\tilde{Y}]$ is open. 
+
+% Suppose $f$ is continuous. Let $\tilde{Y}$ be any open set in $Y$. It follows that for every point $y \in \tilde{Y}$ there exists an $x \in X$ such that $f(x)=y$ and that there exists an $\varepsilon>0$ s.t. $B_\varepsilon(y)\subseteq \tilde{Y}$. By the definition of a continuous function, there exists a $\delta>0$ such that all points in the pre-image of $B_\varepsilon(y)$ must be no more than a distance of $\delta$ away from eachother. That is, for every $f(x)\in B_\varepsilon(y)$ there exists a $B_\delta(x)$ that is contained entirely within $f^{-1}[\tilde{Y}]$. Therefore, $f^{-1}[\tilde{Y}]$ is an open set.
+
+		
+
+		\underline{If $f$ is continuous, then for every open set $\tilde{Y} \in Y$ we know $f^{-1}[\tilde{Y}]$ is open.}
+
+		Since f is continuous, we know that for any $\varepsilon > 0$, if $f(y) \in B_\varepsilon(f(x))$ then there exists some $\delta$ such that $y \in B_\delta(x)$. Since $\tilde{Y}$ is an open set in $Y$, we know that for any $f(x) \in \tilde{Y}$, there is some $\varepsilon > 0$ such that $B_\varepsilon(f(x)) \subseteq \tilde{Y}$. Thus for any $f(x) \in \tilde{Y}$, we can take the corresponding $\varepsilon$ and plug it into the def'n of continuous to see that there exists some $\delta$ such that $B_\delta(x) \subseteq X$. This implies that every $x \in X$ has an open ball of some positive radius  that is a subset of X, which means that $f^{-1}[\tilde{Y}]$ is open.
+
+		% f is continuous means that if you have some $x, y \in X$ and you know $y \in B_\delta(x)$ then you know that $f(y) \in B_\varepsilon(f(x))$. 
+
+		% Recall that if $\exists\ $ a limit point $a$ not in set $A$, then $A$ is open. Also recall that a limit point $a$ is a point such that $\exists\ $ a non-constant sequence of $\{a_n\} \subseteq A$ such that $\{a_n\} \to a$. Thus we must show that there exists $\{x_n\} \subseteq f^{-1}[\tilde{Y}]$ such that $\{x_n\} \to x$ where $x \notin f^{-1}[\tilde{Y}]$. Consider an open set $\tilde{Y} \in Y$. Since this set is open, there exists some non-constant sequence $\{y_n\} \to y$ where $y \notin \tilde{Y}$ but $\{y_n\} \subseteq \tilde{Y}$. Thus, we can take the preimage of all $\{y_n\}$ to be a non-constant sequence $\{x_n\} \subseteq f^{-1}[\tilde{Y}]$. But, it is also clear that $x = f^{-1}(y) \notin f^{-1}[\tilde{Y}]$ because $y \notin \tilde{Y}$. Because $f$ is continuous, we know that$\{x_n\} \to x$ where $x \notin f^{-1}[\tilde{Y}]$. Thus, we know that $f^{-1}[\tilde{Y}]$ is open. 
 
 		\underline{If for every open set $\tilde{Y} \in Y$ we know that $f^{-1}[\tilde{Y}]$ is open, then $f$ must be continuous.}
 
-		As shown in class, an equivalent condition for continuity is $\forall\ \{x_n\} \subseteq X, x_n \to x_0$ implies $f(x_n) \to f(x_0)$. Consider some arbitrary $\{x_n\} \subseteq X$.
+		We would like to show that for any $\varepsilon > 0$, there exists some $\delta$ such that $\rho_X(x, y) < \delta$ implies $\rho_Y(f(x), f(y)) < \varepsilon$. Since $\tilde{Y}$ is open, we know that for any $f(x) \in \tilde{Y}$ there exists some $\varepsilon > 0$ such that $B_\varepsilon(f(x)) \subseteq(\tilde{Y})$. Since $f^{-1}[\tilde{Y}]$ is also open, we know that for any $x$ there exists some $\delta > 0$ such that $B_\delta(x) \subseteq X$. So for any $\varepsilon > 0$, we can select $\tilde{Y} = B_\varepsilon(f(x))$, which gives us the corresponding $f^{-1}[\tilde{Y}]$ with the ball $B_\delta(x)$. The connection between this $x, \delta,$ and $\varepsilon$ satisfies the criteria for $f$ to be continuous. 
+
+% Suppose that $f^{-1}[\tilde{Y}]$ is open for any open set $\tilde{Y}\subseteq Y$. It follows that for all $x\in f^{-1}[\tilde{Y}]$ there exists $\delta >0$ s.t. $B_\delta(x)\subseteq f^{-1}[\tilde{Y}]$. Since $\tilde{Y}$ is an open set, we also know that there exists an $\varepsilon>0$ s.t. $B_\varepsilon(f(x))\subseteq \tilde{Y}$. 
+		
+		% For any $f(x),f(y)\in \tilde{Y}$ such that $\rho_Y(f(x),f(y))\leq\varepsilon$, it is clear that $f(x), f(y)\in B_\varepsilon(f(x))$. Since an open ball is an open set and the pre-image of an open set is open, it follows that there exists a $\delta >0$ such that $x,y \in B_\delta(x)$ and $B_\delta(x)\subseteq f^{-1}[\tilde{Y}]$. It follows that $\rho_X(x,y)\leq \delta$. 
+		
+		% Therefore, for any $\varepsilon>0$, there exists a $\delta$ such that $\rho_X(x,y)\leq \delta \implies \rho_Y(f(x),f(y))\leq\varepsilon$. Therefore f is continuous.
+
+
+
+		% As shown in class, an equivalent condition for continuity is $\forall\ \{x_n\} \subseteq X, x_n \to x_0$ implies $f(x_n) \to f(x_0)$. Consider some arbitrary $\{x_n\} \subseteq X$.
 
 		% Thus consider an arbitrary open set $\tilde{Y} \in Y$
 
