@@ -34,116 +34,88 @@
 	\maketitle
 
 	\section{}
-		\textit{Let $f$ be a real-valued function defined as $f(x) = x^2$ on $Dom(f) = \reals$, and let $\varepsilon > 0$ be given. Find a $\delta$ so that $|x - 1| \leq \delta$ implies $|f(x) - 1| \leq \varepsilon$.}
+		\textit{Let $x, y \in \reals$ be such that $x \neq y$. Prove that $\exists \varepsilon > 0$ such that $B_{\varepsilon}(x) \cap B_{\varepsilon}(y) = \emptyset$}
 
-		We want to show
-
-		\begin{align*}
-			|f(x) - 1| &\leq \varepsilon \\
-			|x^2 - 1| &\leq \varepsilon \\
-			|(x + 1)(x - 1)| &\leq \varepsilon \\ 
-			|(x - 1 + 2))(x - 1)| &\leq \varepsilon \\
-			|x - 1 + 2||x - 1| &\leq \varepsilon \\
-			(|x - 1| + |2|)|x - 1| &\leq \varepsilon \\
-			(\delta + 2)\delta &\leq \varepsilon \\
-			\delta^2 + 2 \delta &\leq \varepsilon
-		\end{align*}
-
-		We can solve $\delta^2 + 2 \delta \leq \varepsilon$ to get an equation for $\delta$ in terms of $\varepsilon$. Take $\delta = \sqrt{\varepsilon + 1} - 1$.
+		Because $x \neq y$ we know that there exists some $\varepsilon' > 0$ such that $\rho(x, y) > \varepsilon'$. Then by taking any $\varepsilon = \varepsilon' / 2$ we can see that $B_{\varepsilon}(x) \cap B_{\varepsilon}(y) = \emptyset$. We can prove this claim by contradiction: assume there was some element $z \in B_{\varepsilon}(x) \cap B_{\varepsilon}(y)$. This implies that $\rho(x, z) < \varepsilon$ and $\rho(z, y) < \varepsilon$, so $\rho(x, y) + \rho(y, z) < 2 \varepsilon$. But since we know $\rho(x,y) = 2 \varepsilon$, the strict inequality for $\rho(x, y) + \rho(y, z) < 2 \varepsilon$ violates the triangle inequality between x, y, and z. 
 
 	\section{}
-		\textit{Prove that the real-valued function $f(x) = 1/x$ defined on $Dom(f) = [1, \infty)$ is uniformly continuous under the usual Euclidean metric $\rho(x, y) = |x - y|$ on $\reals$.}
+		\textit{Let $X = [0, \infty)$ and take $\mathcal{O}_k = (-10, k), k \geq 1$. Prove that:}
 
-		To show uniform continuity we would like to show that given any $\varepsilon > 0$, we can select a $\delta$ independent of $x$ such that $\rho(x, y) \leq \delta \to \rho(f(x), f(y)) \leq \varepsilon$. So consider some $\varepsilon > 0$, and $x, y$ such that $|x - y| \leq \delta$. 
+		\subsection*{Part i}
+			\textit{$O = \{\mathcal{O}_k\}_{k = 1}^\infty$ is a open cover of X;}
 
-		\begin{align*}
-			\rho(f(x), f(y)) &\leq \varepsilon \\
-			|f(x) - f(y)| &\leq \varepsilon	\\
-			|1/x - 1/y| &\leq \varepsilon \\
-			|\frac{y - x}{xy}| &\leq \varepsilon \\
-			\frac{|y - x|}{|xy|} &\leq \varepsilon \\
-			|y - x| &\leq \varepsilon \cdot |x| \cdot |y| \\
-			\delta &\leq \varepsilon \cdot x \cdot y \\
-			\delta &\leq \varepsilon \leq \varepsilon \cdot x \cdot y
-		\end{align*}
+			Note that we say that $\{\mathcal{O}_\alpha\}_{\alpha \in A}$ is an open cover of X if $X \subseteq \bigcup_{\alpha \in A}\mathcal{O}_\alpha$. 
 
-		Where we know that $\varepsilon \leq \varepsilon \cdot x \cdot y$ since $x, y \in [1, \infty)$. Thus we can select $\delta \leq \varepsilon$ independent of $x$ to satisfy uniform continuity. For example, we can always select $\delta = \varepsilon / 2$.
+			Consider an arbitrary element $x \in X$. Because we know that x is a real number greater than or equal to zero, we know that we can take $k = x + 1$ to get $\mathcal{O}_k = (-10, x + 1)$. For this arbitrary value of x and this value of k, it is clear that $x \in \mathcal{O}_k$, so we know that \[X \subseteq \bigcup_{k \in [1, \infty)} \mathcal{O}_{k}\]
+			Thus O is an open cover of X. 
 
-	\section{}
-		\textit{Let $(X, \sigma)$ be a metric space and $x_0$ a point in X. Prove that the function $f : X \to \reals$ defined as $f(x) = \sigma(x, x_0)$ is continuous under the usual Euclidean metric $\rho(x, y) = |x - y|$ on $\reals$.}
+		\subsection*{Part ii}
+			\textit{O has no finite subcover, i.e. X is not compact.}
 
-		To show continuity we would like to show that given any $\varepsilon > 0$, we can select a $\delta$ such that $\forall\ a, b\ .\ \sigma(a, b) \leq \delta \to |f(a) - f(b)| \leq \varepsilon$
+			Proof by contradiction: assume there exists some finite subcover of O:
+			\[\exists \{\alpha_k\}_{k = 1}^K \subseteq [1, \infty)\ s.t.\ X \subseteq \bigcup_{k =1}^K \mathcal{O}_{\alpha_k}\]
 
-		We can use the triangle inequality of $\sigma$ to note that 
-
-		\begin{align*}
-			|f(a) - f(b)| \leq \varepsilon \\
-			|\sigma(a, x_0) - \sigma(b, x_0)| \leq \varepsilon \\
-			|\sigma(a, b)| \leq |\sigma(a, x_0) - \sigma(b, x_0)| \leq \varepsilon \\
-			\delta \leq \varepsilon
-		\end{align*}
-
-		Thus by taking $\delta \leq \varepsilon$, for example $\delta = \varepsilon / 2$, we can satisfy the criteria for continuity. 
+			In other words, there is a finite subsequence of $[1, \infty)$ such that the union of each of the $\mathcal{O}$s is also a cover of X. However, it is evident that by the definition of $\mathcal{O}_k = (-10, k)$ that $K+1 \notin \bigcup_{k =1}^K \mathcal{O}_{\alpha_k}$. Thus $X \not \subseteq \bigcup_{k =1}^K \mathcal{O}_{\alpha_k}$, so O has no finite subcover and X is not compact. 
 
 	\section{}
-		\textit{Let $(X, \rho_X)$ and $(Y, \rho_Y)$ be two metric spaces, and $f : X \to Y$ a function with domain $Dom(f) = X$ and range $Ran(f) = Y$. Prove that $f$ is continuous if and only if $f^{-1}[\tilde{Y}]$ (the preimage of $\tilde{Y}$) is open for every open set $\tilde{Y}$ in Y.}
+		\textit{Let $(X, \rho)$ be a metric space with $\rho$ the discrete metric. Prove that $(X, \rho)$ is compact if and only if X is a finite set.}
 
-		% Try rewriting definition of continuity in terms of open balls. Because p(y, y_0) < epsilon means that that is an open ball with radius epsilon around y_0. So you can rewrite what continuous means in terms of open balls around things existing
+		\underline{If X is a finite set then $(X, \rho)$ is compact} % TODO
 
+		Consider any infinite sequence in X. Because there are an infinite number of terms in the sequence, but only a finite number of elements in X, there is some element $x \in X$ for each sequence that appears infinitely many times in that sequence. Thus there obviously exists a subsequence that converges to x for any sequence. Therefore, the $(X, \rho)$ is sequentially compact, which implies it is compact. 
 
-% Suppose $f$ is continuous. Let $\tilde{Y}$ be any open set in $Y$. It follows that for every point $y \in \tilde{Y}$ there exists an $x \in X$ such that $f(x)=y$ and that there exists an $\varepsilon>0$ s.t. $B_\varepsilon(y)\subseteq \tilde{Y}$. By the definition of a continuous function, there exists a $\delta>0$ such that all points in the pre-image of $B_\varepsilon(y)$ must be no more than a distance of $\delta$ away from eachother. That is, for every $f(x)\in B_\varepsilon(y)$ there exists a $B_\delta(x)$ that is contained entirely within $f^{-1}[\tilde{Y}]$. Therefore, $f^{-1}[\tilde{Y}]$ is an open set.
+		% https://math.stackexchange.com/questions/1976792/prove-that-any-finite-set-in-a-metric-space-is-compact
 
-		
+		\underline{If $(X, \rho)$ is compact then X is a finite set} % TODO
 
-		\underline{If $f$ is continuous, then for every open set $\tilde{Y} \in Y$ we know $f^{-1}[\tilde{Y}]$ is open.}
-
-		Since f is continuous, we know that for any $\varepsilon > 0$, if $f(y) \in B_\varepsilon(f(x))$ then there exists some $\delta$ such that $y \in B_\delta(x)$. Since $\tilde{Y}$ is an open set in $Y$, we know that for any $f(x) \in \tilde{Y}$, there is some $\varepsilon > 0$ such that $B_\varepsilon(f(x)) \subseteq \tilde{Y}$. Thus for any $f(x) \in \tilde{Y}$, we can take the corresponding $\varepsilon$ and plug it into the def'n of continuous to see that there exists some $\delta$ such that $B_\delta(x) \subseteq X$. This implies that every $x \in X$ has an open ball of some positive radius  that is a subset of X, which means that $f^{-1}[\tilde{Y}]$ is open.
-
-		% f is continuous means that if you have some $x, y \in X$ and you know $y \in B_\delta(x)$ then you know that $f(y) \in B_\varepsilon(f(x))$. 
-
-		% Recall that if $\exists\ $ a limit point $a$ not in set $A$, then $A$ is open. Also recall that a limit point $a$ is a point such that $\exists\ $ a non-constant sequence of $\{a_n\} \subseteq A$ such that $\{a_n\} \to a$. Thus we must show that there exists $\{x_n\} \subseteq f^{-1}[\tilde{Y}]$ such that $\{x_n\} \to x$ where $x \notin f^{-1}[\tilde{Y}]$. Consider an open set $\tilde{Y} \in Y$. Since this set is open, there exists some non-constant sequence $\{y_n\} \to y$ where $y \notin \tilde{Y}$ but $\{y_n\} \subseteq \tilde{Y}$. Thus, we can take the preimage of all $\{y_n\}$ to be a non-constant sequence $\{x_n\} \subseteq f^{-1}[\tilde{Y}]$. But, it is also clear that $x = f^{-1}(y) \notin f^{-1}[\tilde{Y}]$ because $y \notin \tilde{Y}$. Because $f$ is continuous, we know that$\{x_n\} \to x$ where $x \notin f^{-1}[\tilde{Y}]$. Thus, we know that $f^{-1}[\tilde{Y}]$ is open. 
-
-		\underline{If for every open set $\tilde{Y} \in Y$ we know that $f^{-1}[\tilde{Y}]$ is open, then $f$ must be continuous.}
-
-		We would like to show that for any $\varepsilon > 0$, there exists some $\delta$ such that $\rho_X(x, y) < \delta$ implies $\rho_Y(f(x), f(y)) < \varepsilon$. Since $\tilde{Y}$ is open, we know that for any $f(x) \in \tilde{Y}$ there exists some $\varepsilon > 0$ such that $B_\varepsilon(f(x)) \subseteq(\tilde{Y})$. Since $f^{-1}[\tilde{Y}]$ is also open, we know that for any $x$ there exists some $\delta > 0$ such that $B_\delta(x) \subseteq X$. So for any $\varepsilon > 0$, we can select $\tilde{Y} = B_\varepsilon(f(x))$, which gives us the corresponding $f^{-1}[\tilde{Y}]$ with the ball $B_\delta(x)$. The connection between this $x, \delta,$ and $\varepsilon$ satisfies the criteria for $f$ to be continuous. 
-
-% Suppose that $f^{-1}[\tilde{Y}]$ is open for any open set $\tilde{Y}\subseteq Y$. It follows that for all $x\in f^{-1}[\tilde{Y}]$ there exists $\delta >0$ s.t. $B_\delta(x)\subseteq f^{-1}[\tilde{Y}]$. Since $\tilde{Y}$ is an open set, we also know that there exists an $\varepsilon>0$ s.t. $B_\varepsilon(f(x))\subseteq \tilde{Y}$. 
-		
-		% For any $f(x),f(y)\in \tilde{Y}$ such that $\rho_Y(f(x),f(y))\leq\varepsilon$, it is clear that $f(x), f(y)\in B_\varepsilon(f(x))$. Since an open ball is an open set and the pre-image of an open set is open, it follows that there exists a $\delta >0$ such that $x,y \in B_\delta(x)$ and $B_\delta(x)\subseteq f^{-1}[\tilde{Y}]$. It follows that $\rho_X(x,y)\leq \delta$. 
-		
-		% Therefore, for any $\varepsilon>0$, there exists a $\delta$ such that $\rho_X(x,y)\leq \delta \implies \rho_Y(f(x),f(y))\leq\varepsilon$. Therefore f is continuous.
-
-
-
-		% As shown in class, an equivalent condition for continuity is $\forall\ \{x_n\} \subseteq X, x_n \to x_0$ implies $f(x_n) \to f(x_0)$. Consider some arbitrary $\{x_n\} \subseteq X$.
-
-		% Thus consider an arbitrary open set $\tilde{Y} \in Y$
-
-		% , which gives us $f : f^{-1}[\tilde{Y}] \to \tilde{Y}$. 
+		Proof by contradiction: assume $(X, \rho)$ is a compact, X is an infinite set, and $\rho$ is the discrete metric. But because X is infinite, there exists a sequence $\{x_n\}$ such that $x_n \neq x_{n'}$ for all $n' < n$. This implies that $\rho(x_n, x_{n'}) = 1$ for all $n > n'$ for all $n'$. No subsequence of this sequence can converge (because we can always choose $\varepsilon < 1$), and therefore $(X, \rho)$ cannot be sequentially compact, and since we are in a topology this implies $(X, \rho)$ cannot be compact. This contradicts our assumption, and thus we know that $X$ cannot be infinite. 
 
 	\section{}
-		\begin{em}
-			Let $f$ be the function on $[0, 1]$ given by 
+		\textit{Let $(X, \sigma)$ be a metric space, and $f(x) : Dom(f) = X \mapsto \reals$ be a continuous function (under the usual Euclidean metric $\rho(x, y) = |x - y| $ on $\reals$). Prove that $|f(x)|$ is a continuous function on $Dom(f)$}
 
-			\[f(x) = \begin{cases}
-				1\ if\ x \neq \frac{1}{2} \\
-				2\ if\ x = \frac{1}{2}
-			\end{cases}\]
+		Since $f$ is continuous, we know that for any $\varepsilon > 0$ and $x \in Dom(f)$ we can select $\delta(\varepsilon, x)$ such that $\sigma(x, y) \leq \delta$ implies that $\rho(f(x), f(y)) \leq \varepsilon$. 
 
-			Prove that $f$ is Riemann integrable and compute $\int_0^1 f(x) dx$. Hint: for each $\varepsilon > 0$, find a partition P so that $U_P(f) - L_P(f) \leq \varepsilon$. 
-		\end{em}
-
-		Given any $\varepsilon$, we can select the partition $P = \left \{0, \frac{1}{2} - \frac{\varepsilon}{2}, \frac{1}{2} + \frac{\varepsilon}{2}, 1 \right \}$. Thus
-
+		We want to show that for any $\varepsilon > 0$ and $x \in Dom(f)$ we can select $\delta(\varepsilon, x)$ such that $\sigma(x, y) \leq \delta$ implies that $\rho(|f(x)|, |f(y)|) \leq \varepsilon$. If we select $\delta(\varepsilon, x)$ in the same way for $|f(x)|$ as we did for $f(x)$ we can see that 
 		\begin{align*}
-			U_P(f) &= 1 \left (\frac{1}{2} - \frac{\varepsilon}{2} - 0 \right ) + 2\left (\frac{1}{2} + \frac{\varepsilon}{2} - \left (\frac{1}{2} - \frac{\varepsilon}{2}\right ) \right ) + 1\left (1 - \left (\frac{1}{2} + \frac{\varepsilon}{2} \right) \right ) \\
-			&= 1 + \varepsilon
+			\rho(|f(x)|, |f(y)|) &= ||f(x)| - |f(y)|| \\
+			&\leq |f(x) - f(y)| \\ % Use the alternate triangle inequality here http://www.mathwords.com/t/triangle_inequality_with_absolute_value.htm
+			&\leq \varepsilon
 		\end{align*}
 
+		and thus $|f(x)|$ is clearly a continuous function on $Dom(f)$. 
+
+	\section{}
+		\textit{Let $(X, \sigma)$ be a metric space, $f : X \to \reals$ and $f : X \to \reals$ be both Lipschitz on X (under the usual euclidean metric $\rho(x, y) = |x - y|$ on $\reals$). Prove that $f + g$ is also Lipschitz on X.}
+
+		Since $f$ is Lipschitz, we know that there exists some $M_f$ such that $\rho(f(x), f(y)) \leq M \sigma(x, y)$ for all $x, y \in Dom(f)$. Since $g$ is also Lipschitz, we know that there exists some $M_g$ such that $\rho(g(x), g(y)) \leq M \sigma(x, y)$ for all $x, y \in Dom(g)$. Now consider $M = 2 * max(M_f, M_g)$. 
 		\begin{align*}
-			L_P(f) &= 1 \left (\frac{1}{2} - \frac{\varepsilon}{2} - 0 \right ) + 1\left (\frac{1}{2} + \frac{\varepsilon}{2} - \left (\frac{1}{2} - \frac{\varepsilon}{2}\right ) \right ) + 1\left (1 - \left (\frac{1}{2} + \frac{\varepsilon}{2} \right) \right ) \\
-			&= 1 
+			\rho(f(x) + g(x), f(y) + g(y)) &= |f(x) + g(x) - (f(y) + g(y))|& \\
+			&= |f(x) - f(y) + g(x) - g(y)| \\
+			&\leq |f(x) - f(y)| + |g(x) - g(y)| \\
+			&\leq \rho(f(x), f(y)) + \rho(g(x), g(y)) \\
+			&\leq \frac{M}{2}\sigma(x, y) + \frac{M}{2}\sigma(x, y) \\
+			&\leq M \sigma(x, y) 
 		\end{align*}
 
-		So, $U_P(f) - L_P(f) = 1 + \varepsilon - 1 = \varepsilon$, which by the Riemann integrability test, shows that $f$ is integrable. The value of $\int_0^1 f(x) dx = sup_P[ L_P(f) ] = 1$.
+		Thus we have found some $M$ such that $\rho(f(x) + g(x), f(y) + g(y)) \leq M \sigma(x, y)$ for all $x, y \in Dom(f + g)$, so $f + g$ is Lipschitz on X. 
+
+	\section{}
+		\textit{Let $(X, \sigma)$ be a metric space, $f : X \to \reals$ and $g : X \to \reals$ be both uniformly continous on X (under the usual Euclidean metric $\rho(x, y) = |x - y|$ on $\reals$). Prove that $f + g$ is also uniformly continuous on X.}
+
+		Since $f$ is uniformly continuous, we know that $\forall \varepsilon > 0, \exists \delta_f(\varepsilon) > 0$ such that $\sigma(x, y) \leq \delta_f$ implies $\rho(f(x), f(y)) \leq \varepsilon$ for all $x, y \in Dom(f)$. 
+
+		Since $g$ is also uniformly continuous, we know that $\forall \varepsilon > 0, \exists \delta_g(\varepsilon) > 0$ such that $\sigma(x, y) \leq \delta_g$ implies $\rho(g(x), g(y)) \leq \varepsilon$ for all $x, y \in Dom(g)$. 
+
+		So consider an arbitrary $\varepsilon$ and take $\delta = min(\delta_f(\frac{\varepsilon}{2}), \delta_g(\frac{\varepsilon}{2}))$. Then 
+		\begin{align*}
+			\rho(f(x) + g(x), f(y) + g(y)) &= |f(x) + g(x) - (f(y) + g(y))|& \\
+			&= |f(x) - f(y) + g(x) - g(y)| \\
+			&\leq |f(x) - f(y)| + |g(x) - g(y)| \\
+			&\leq \rho(f(x), f(y)) + \rho(g(x), g(y)) \\
+			&\leq \frac{\varepsilon}{2} + \frac{\varepsilon}{2} \\
+			&\leq \varepsilon
+		\end{align*}
+
+		Thus given any $\varepsilon$ we are able to select a $\delta$ such that $\sigma(x, y) \leq \delta$ implies that $\rho(f(x) + g(x), f(y) + g(y)) \leq \varepsilon$. This means that $f + g$ is also uniformly continuous on X.
+
 \end{document}
