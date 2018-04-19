@@ -1,0 +1,74 @@
+\documentclass[]{article}
+
+\author{Rushi Shah}
+\date{\today}
+\title{Assignment 10}
+
+\setlength{\columnsep}{.75in}
+
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+\usepackage[margin=1in]{geometry}
+
+\usepackage{titling}
+\setlength{\droptitle}{-85pt}
+
+% Prefix section headers with "Problem"
+\renewcommand*{\thesection}{Problem~\arabic{section}}
+
+
+% Note: `\to` is a synonym for `\rightarrow`
+\newcommand{\integers}{\mathbb{Z}}
+\newcommand{\naturals}{\mathbb{N}}
+\newcommand{\reals}{\mathbb{R}}
+\newcommand{\complexes}{\mathbb{C}}
+\newcommand{\rationals}{\mathbb{Q}}
+\newcommand{\inv}{^{-1}}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+
+\begin{document}
+	\maketitle
+
+	\section{}
+		\begin{em}
+			Let $f : \reals \to \reals$ be defined as $f(x) = x^3$. Prove that is differentiable everywhere on $\reals$ by showing that the limit of the difference quotient exists.
+		\end{em}
+
+		To show that the function $f$ is differentiable everywhere, we must show that for any $x \in \reals$ the following limit exists:
+
+		\begin{align*}
+			\lim_{h \to 0}\frac{f(x + h) - f(x)}{h} \\
+			&=\lim_{h \to 0}\frac{(x + h)^3 - x^3}{h} \\
+			&=\lim_{h \to 0}\frac{(x^2 + 2hx + h^2)(x + h) - x^3}{h} \\
+			&=\lim_{h \to 0}\frac{x^3 + 2hx^2 + h^2x + x^2h + 2h^2x + h^3 - x^3}{h} \\
+ 			&=\lim_{h \to 0}\frac{3hx^2 + h^2x + 2h^2x + h^3}{h} \\
+			&=\lim_{h \to 0}{3x^2 + hx + 2hx + h^2} \\
+			&=3x^2
+		\end{align*}
+
+	\section{}
+		\begin{em}
+			Let $f : \reals \to \reals$ be a continuously differentiable function on a closed finite interval $[a, b] \subseteq \reals$. Prove that $f$ is Lipschitz continuous on $[a, b]$. Hint: an easy way to go is to use the Mean Value Theorem.
+		\end{em}
+
+		We would like to show that $\forall\ x, y \in [a, b]\ .\ \exists\ m \geq 0\ .\ |f(x) - f(y)| \leq m \cdot |x - y|$. Thus if we fix $x, y \in [a, b]$ (WLOG such that $x \leq y$), by Lagrange's MVT we know that there exists some $c \in (x, y)$ such that $f'(c) = \frac{f(y) - f(x)}{y - x}$ which implies $f'(c) \cdot (y - x) = f(y) - f(x)$. We can take the absolute values of both sides to see that we have found such an $m = f'(c)$ to satisfy the property of Lipschitz continuity.
+
+	\section{}
+		\begin{em}
+			Let $f:\reals \to \reals$ be such that $\forall x \in \reals\ .\ f(x) \geq 0$. Assume that $f(x)^2$ is differentiable. Is $f(x)$ necessarily differentiable? If it is, prove so. Otherwise, explain why not.
+		\end{em}
+
+		The claim is false, we will provide a counterexample. Consider the function $f(x) = |x|$. This function is non-negative everywhere, but not differentiable at $x = 0$. However, $|x|^2 = x^2$ for all real $x$, and we know that $x^2$ is differentiable. Thus $f(x)^2$ is differentiable does not imply that $f(x)$ is necessarily differentiable.
+
+	\section{}
+		\begin{em}
+			Let $f : \reals \to \reals$ and $g : \reals \to \reals$ be both continuously differentiable. Assume that $f(0) = g(0)$ and $f'(x) \leq g'(x), \forall x \geq 0$. Prove that $f(x) \leq g(x), \forall x \geq 0$.
+		\end{em}
+
+		Consider functions $f(x), g(x) : \reals \to \reals$ such that $f(0) = g(0)$ and $f'(x) \leq g'(x), \forall x \geq 0$. Then, we can define a function $h(x) = f(x) - g(x)$, and we know that $h'(x) = f'(x) - g'(x)$ by the linearity of derivatives. since $f'(x) \leq g'(x)$, we know that $h'(x) \leq 0$ for all $x$. By the def'n of $h$, we know that $h(0) = f(0) - g(0) = 0$. Thus, $h$ is a function that starts at zero and is monotonically decreasing. Thus $h(x) \leq 0 \to f(x) \leq g(x), \forall x \geq 0$ as desired. 
+
+\end{document}
