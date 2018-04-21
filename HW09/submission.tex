@@ -2,7 +2,7 @@
 
 \author{Rushi Shah}
 \date{\today}
-\title{Assignment 10}
+\title{Assignment 9}
 
 \setlength{\columnsep}{.75in}
 
@@ -35,40 +35,80 @@
 
 	\section{}
 		\begin{em}
-			Let $f : \reals \to \reals$ be defined as $f(x) = x^3$. Prove that is differentiable everywhere on $\reals$ by showing that the limit of the difference quotient exists.
+			The function $f$ defined as follows is called the Dirichlet function:
+
+			\[f(x) = \begin{cases}
+				1\ x \in \rationals \\
+				0\ x \notin \rationals
+			\end{cases}\]
+
+			where $\rationals$ is the set of rational numbers. Prove that $f$ is NOT Riemann integrable on $[0, 1]$. Hint: using the fact that any interval of real numbers contains both rationals and irrationals. 
 		\end{em}
 
-		To show that the function $f$ is differentiable everywhere, we must show that for any $x \in \reals$ the following limit exists:
+		To show that the function $f$ is not Riemann integrable, we must show that \[\underset{P}{sup}\{L_P(f)\} \neq \underset{P}{inf} \{U_P(f)\}\]
+
+		Since any interval of real numbers contains both rational and irrational numbers, we know that for any partition $P$ with $N$ intervals, $m_i(f) = 0$ and $M_i(f) = 1$ for all $1 \leq i \leq N$. 
+
+		By def'n, for any $P$ with $N$ intervals, and since $M_i(f) = 1, m_i(f) = 0$ are constants, we know that  $L_P(f) = \sum_{i = 1}^N m_i(x_i - x_{i - 1}) = m_i \sum_{i = 1}^N x_i - x_{i - 1} = m_i \cdot (x_n - x_0) = m_i = 0$ and $U_P(f) = \sum_{i = 1}^N M_i(x_i - x_{i - 1}) = M_i \sum_{i = 1}^N x_i - x_{i - 1} = M_i \cdot (x_n - x_0) = M_i = 1$. 
+
+		Thus $\underset{P}{sup}\{L_P(f)\} = 0$ and $\underset{P}{inf} \{U_P(f)\} = 1$, so $\underset{P}{sup}\{L_P(f)\} \neq \underset{P}{inf} \{U_P(f)\}$ and the function is not Riemann integrable.
+
+	\section{}
+		\begin{em}
+			Let $f$ and $g$ be both Riemann integrable on $[a, b]$. Prove that $f\ g$ is Riemann integrable on $[a, b]$. Hint: One strategy is to first show that $f^2$ is integrable if f is integrable and then use the fact that $f\ g = ((f + g)^2 - f^2 - g^2)/2$. 
+		\end{em}
+
+		\underline{Lemma: if $f$ is integrable then $f^2$ is integrable.} Since $f$ is integrable, we know that $\forall\ \varepsilon > 0\ .\ \exists\ P\ .\ U_P(f) - L_P(f) \leq \varepsilon$. We would like to show that $\forall\ \varepsilon > 0\ .\ \exists\ P\ .\ U_P(f^2) - L_P(f^2) \leq \varepsilon$. 
+
+		Consider 
 
 		\begin{align*}
-			\lim_{h \to 0}\frac{f(x + h) - f(x)}{h} \\
-			&=\lim_{h \to 0}\frac{(x + h)^3 - x^3}{h} \\
-			&=\lim_{h \to 0}\frac{(x^2 + 2hx + h^2)(x + h) - x^3}{h} \\
-			&=\lim_{h \to 0}\frac{x^3 + 2hx^2 + h^2x + x^2h + 2h^2x + h^3 - x^3}{h} \\
- 			&=\lim_{h \to 0}\frac{3hx^2 + h^2x + 2h^2x + h^3}{h} \\
-			&=\lim_{h \to 0}{3x^2 + hx + 2hx + h^2} \\
-			&=3x^2
+			|f^2(x) - f^2(y)| = |(f(x) + f(y))(f(x) - f(y))| &\leq |f(x) + f(y)||f(x) - f(y)| \\
+			&\leq 2B |f(x) - f(y)| \\
+			&\leq 2B |M_i(f) - m_i(f)|
 		\end{align*}
 
+		But also
+
+		\[|f^2(x) - f^2(y)| \leq |M_i(f^2) - m_i(f^2)|\]
+
+		by the least upper bound property of $f^2$. Because $|M_i(f^2) - m_i(f^2)|$ is the least upper bound, we can see that $|M_i(f^2) - m_i(f^2)| \leq 2B|M_i(f) - m_i(f)|$. 
+
+		Now we can consider
+
+		\begin{align*}
+			U_P(f)^2 - L_P(f^2) &= \sum_{i = 1}^N(M_i(f^2) - m_i(f^2))(x_i - x_{i - 1}) \\
+			&\leq \sum_{i = 1}^N(2B(M_i(f) - m_i(f))(x_i - x_{i - 1})) \\
+			&\leq 2B (U_P(f) - L_P(f)) \\
+			&\leq 2B \varepsilon
+		\end{align*}
+
+		Which, by the Riemann integrability test, implies that $f^2$ is integrable if $f$ is integrable. 
+
+		Because $f\ g = ((f + g)^2 - f^2 - g^2)/2$ and integrability is closed under addition, we know that $f\ g$ is integrable as desired.
+
 	\section{}
 		\begin{em}
-			Let $f : \reals \to \reals$ be a continuously differentiable function on a closed finite interval $[a, b] \subseteq \reals$. Prove that $f$ is Lipschitz continuous on $[a, b]$. Hint: an easy way to go is to use the Mean Value Theorem.
+			Let $f$ be a continuous function on $[a, b]$ and suppose that $\delta > 0$. 
 		\end{em}
 
-		We would like to show that $\forall\ x, y \in [a, b]\ .\ \exists\ m \geq 0\ .\ |f(x) - f(y)| \leq m \cdot |x - y|$. Thus if we fix $x, y \in [a, b]$ (WLOG such that $x \leq y$), by Lagrange's MVT we know that there exists some $c \in (x, y)$ such that $f'(c) = \frac{f(y) - f(x)}{y - x}$ which implies $f'(c) \cdot (y - x) = f(y) - f(x)$. We can take the absolute values of both sides to see that we have found such an $m = f'(c)$ to satisfy the property of Lipschitz continuity.
+		\subsection*{a)}
+			\begin{em}
+				Prove that $\int_a^b f(x)dx = \lim_{\delta \to 0} \int_{a + \delta}^b f(x)dx$.
+			\end{em}
 
-	\section{}
-		\begin{em}
-			Let $f:\reals \to \reals$ be such that $\forall x \in \reals\ .\ f(x) \geq 0$. Assume that $f(x)^2$ is differentiable. Is $f(x)$ necessarily differentiable? If it is, prove so. Otherwise, explain why not.
-		\end{em}
+			Consider a partition $P$ with $N$ intervals of size $\delta$ so $x_1 = x_0 + \delta = a + \delta$ and $b = x_N = a + N \delta$. Then $b = a + N \delta \to \delta = \frac{b - a}{N}$ so $\lim_{\delta \to 0}\int_{a + \delta}^b f(x)dx = \lim_{N \to \infty}\sum_{i = 1}^N f(x_i^*)(x_i - x_{i - 1})$ by the def'n of a Riemann sum. But $\lim_{N \to \infty}\sum_{i = 1}^N f(x_i^*)(x_i - x_{i - 1}) = \int_a^bf(x)dx$ which gives the desired result. Thus $\int_a^b f(x)dx = \lim_{\delta \to 0} \int_{a + \delta}^b f(x)dx$. This result was also proved in theorem 14.2. 
 
-		The claim is false, we will provide a counterexample. Consider the function $f(x) = |x|$. This function is non-negative everywhere, but not differentiable at $x = 0$. However, $|x|^2 = x^2$ for all real $x$, and we know that $x^2$ is differentiable. Thus $f(x)^2$ is differentiable does not imply that $f(x)$ is necessarily differentiable.
+			% Literally pulled the last equality out of thin air
 
-	\section{}
-		\begin{em}
-			Let $f : \reals \to \reals$ and $g : \reals \to \reals$ be both continuously differentiable. Assume that $f(0) = g(0)$ and $f'(x) \leq g'(x), \forall x \geq 0$. Prove that $f(x) \leq g(x), \forall x \geq 0$.
-		\end{em}
+		\subsection*{b)}
+			\begin{em}
+				Prove that $\int_a^b f(x)dx = \lim_{\delta \to 0} \int_{a + \delta}^{b - \delta} f(x)dx$.
+			\end{em}
 
-		Consider functions $f(x), g(x) : \reals \to \reals$ such that $f(0) = g(0)$ and $f'(x) \leq g'(x), \forall x \geq 0$. Then, we can define a function $h(x) = f(x) - g(x)$, and we know that $h'(x) = f'(x) - g'(x)$ by the linearity of derivatives. since $f'(x) \leq g'(x)$, we know that $h'(x) \leq 0$ for all $x$. By the def'n of $h$, we know that $h(0) = f(0) - g(0) = 0$. Thus, $h$ is a function that starts at zero and is monotonically decreasing. Thus $h(x) \leq 0 \to f(x) \leq g(x), \forall x \geq 0$ as desired. 
+			We can consider the open interval $(a, b)$ to apply theorem 14.3 which gives us the points $a_1 = a, a_K = b$ and gives us the following equality
+			\[\int_a^b f(x)dx = \sum_{j = 1}^{K + 1}\lim_{\delta \to 0}\int_{a_{j - 1} + \delta}^{a_j - \delta}f(x)dx = \lim_{\delta \to 0} \int_{a + \delta}^{b - \delta} f(x)dx\]
+
+			as desired.
 
 \end{document}
