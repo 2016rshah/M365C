@@ -1,0 +1,129 @@
+\documentclass[]{article}
+
+\author{Rushi Shah}
+\date{\today}
+\title{Assignment 10}
+
+\setlength{\columnsep}{.75in}
+
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{mathtools}
+
+\usepackage[margin=1in]{geometry}
+
+\usepackage{titling}
+\setlength{\droptitle}{-85pt}
+
+% Prefix section headers with "Problem"
+\renewcommand*{\thesection}{Problem~\arabic{section}}
+
+
+% Note: `\to` is a synonym for `\rightarrow`
+\newcommand{\integers}{\mathbb{Z}}
+\newcommand{\naturals}{\mathbb{N}}
+\newcommand{\reals}{\mathbb{R}}
+\newcommand{\complexes}{\mathbb{C}}
+\newcommand{\rationals}{\mathbb{Q}}
+\newcommand{\inv}{^{-1}}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}
+
+
+
+\begin{document}
+	\maketitle
+
+	\section{}
+		\begin{em}
+			Let $\{f_n\}$ be a sequence of functions defined on $[a, b]$ and $g$ be a continuous function on $[a, b]$. 
+		\end{em}
+
+		\subsection*{a}
+		\begin{em}
+			Prove that if $f_n \to f$ pointwise, then $g \cdot f_n \to g \cdot f$ pointwise. 
+		\end{em}
+
+			This follows from definitions of convergence and the fact that $|g\ f_n − g\ f| = |g||f_n − f| \leq (sup_{x \in [a,b]} |g|)|f_n − f|$. See also Corollary 18.5 in the lecture notes. 
+			% QUESTION
+
+		\subsection*{b}
+			\begin{em}
+				Prove that if $f_n \to f$ uniformly, then $g \cdot f_n \to g \cdot f$ uniformly.
+			\end{em}
+
+			This follows from definitions of convergence and the fact that $|g\ f_n − g\ f| = |g||f_n − f| \leq (sup_{x \in [a,b]} |g|)|f_n − f|$. See also Corollary 18.5 in the lecture notes. 
+			% QUESTION
+
+		\subsection*{c}
+			\begin{em}
+				If we assume further that $f_n(x) (n \geq 1)$ are bounded functions and $f_n \to f$ in the sup norm, does $g \cdot f_n \to g \cdot f$ in the sup norm? If so, prove it. Otherwise, give a counter example.
+			\end{em}
+
+			It does, because $\norm{g\ f_n - g\ f}_\infty \leq (sup_{x \in [a, b]}|g|) \norm{f_n - f}_\infty$. See also Corollary 18.5 in the lecture notes. 
+			% QUESTION
+
+	\section{}
+		\begin{em}
+			Prove that $f_n(x) = \left ( x - \frac{1}{n} \right ) ^2$ converges uniformly on any finite interval. Hint: $f_n \to x^2$. 
+		\end{em}
+
+		Consider some finite interval that is (WLOG) $[a, b]$. Then when we take $f(x) = x^2$ we can see that 
+		\[|f_n(x) - f(x)| = \left |\left ( x - \frac{1}{n} \right ) ^2 - x^2 \right | = \left |x^2 - \frac{2x}{n} + \frac{1}{n^2} - x^2 \right | = \left |\frac{2x}{n} + \frac{1}{n^2} \right | \leq \frac{2}{n}|x| + \frac{1}{n^2}\] 
+
+		We will first prove that for any $\varepsilon_1 \geq 0$ we can select a sufficiently large $N_1$ such that $\frac{2}{n}|x| \leq \varepsilon_1, \forall n \geq N_1$ and for any $\varepsilon_2 \geq 0$ we can select a sufficiently large $N_2$ such that $\frac{1}{n^2} \leq \varepsilon_2, \forall n \geq N_2$. 
+
+		It is clear that for any $\varepsilon_1 \geq 0$ we can select a sufficiently large $N_1$ such that $\frac{2}{n}|x| \leq \varepsilon_1, \forall n \geq N_1$. On the interval $[a, b]$, we can take the constant $c = max(|a|, |b|)$ to see that we must select a value for $N$ such that $\forall n \geq N\ .\ \frac{2}{n} |x| \leq \frac{2 \cdot c}{n} \leq \varepsilon_1$. Clearly any $N \geq \frac{2 \cdot c}{\varepsilon_1}$ suffices. 
+
+		It is similarly clear that for any $\varepsilon_2 \geq 0$ we can select a sufficiently large $N_2$ such that $\frac{1}{n^2} \leq \varepsilon_2, \forall n \geq N_2$. In this case we must simply select $N \geq \sqrt{\frac{1}{\varepsilon_2}}$. 
+
+		Now, we know that for any $\varepsilon$ we can select $\varepsilon_1, \varepsilon_2$ such that $\varepsilon = \varepsilon_1 + \varepsilon_2$ and take $N = max(N_1, N_2)$ which is sufficient to show that $|f_n(x) - f(x)| \leq \varepsilon, \forall n \geq N$. This lets us conclude that $f_n(x) = \left ( x - \frac{1}{n} \right ) ^2$ converges uniformly on the interval $[a, b]$. 
+
+	\section{}
+		\begin{em}
+			Let $f$ and $g$ be continuous functions on $[a, b]$. 
+		\end{em}
+
+		\subsection*{a}
+		\begin{em}
+			Use the triangle inequality to prove that \[| \norm{f}_\infty - \norm{g}_\infty | \leq \norm{f - g}_\infty \]
+		\end{em}
+
+			% Note that it is a property of absolute values that $| \norm{f}_\infty - \norm{g}_\infty | \leq |\norm{f}_\infty| + |\norm{g}_\infty|$. But since sup norms are always non-negative, we know that $|\norm{f}_\infty| + |\norm{g}_\infty| = \norm{f}_\infty + \norm{g}_\infty$. But the Minkowsky triangle inequality states that $\norm{f}_\infty + \norm{g}_\infty \leq $
+
+
+			We can see that $\norm{f - g}_\infty = sup_{x \in [a, b]}|f - g| = sup_{x \in [a, b]}|f + (- g)| = \norm{f + (-g)}_\infty$. But we also can use the triangle inequality to see that $\norm{f + (-g)}_\infty \leq \norm{f}_\infty + \norm{(-g)}_\infty = \norm{f}_\infty + sup_{x \in [a, b]}|(-g)| = \norm{f}_\infty + sup_{x \in [a, b]}|g| = \norm{f}_\infty + \norm{g}_\infty$ 
+
+			This lets us conclude that $\norm{f - g}_\infty \leq \norm{f}_\infty + \norm{g}_\infty$
+
+			% QUESTION: this seems wrong to me hmmm.
+
+			% We know that $| \norm{f}_\infty - \norm{g}_\infty | = | sup_{x \in [a, b]}|f| - sup_{x \in [a, b]}|g| |$. But it is clear that restricting the value at which you take the two $sup$s can only increase the difference, so $| sup_{x \in [a, b]}|f| - sup_{x \in [a, b]}|g| | \leq |sup_{x \in [a, b]}|f - g||$. 
+
+			% To prove the claim of the last inequality, consider the $a \in [a, b]$ such that $f(a) - g(a) = sup_{x \in [a, b]}f(x) - g(x)$ (WLOG assume $g(a) \leq f(a)$. We know that $g(a) \leq sup_{x \in [a, b]}g(x)$. Thus $f(a) - sup_{x \in [a, b]}g(x) \leq f(a) - g(a)$ by the triangle inequality, so $| sup_{x \in [a, b]}|f| - sup_{x \in [a, b]}|g| | \leq |sup_{x \in [a, b]}|f - g||$.
+
+			% But $|sup_{x \in [a, b]}|f - g|| = | \norm{f - g}_\infty |$ by def'n of the sup. And since the sup norm is always non-negative, we know that $| \norm{f - g}_\infty | = \norm{f - g}_\infty$. Thus we have shown that $\norm{f}_\infty - \norm{g}_\infty | \leq \norm{f - g}_\infty$.
+
+			See also Lemma 17.4 in the lecture notes. 
+
+		\subsection*{b}
+		\begin{em}
+			Suppose $f_n \to f$ in the sup norm. Prove that $\norm{f_n}_\infty \to \norm{f}_\infty$
+		\end{em}
+
+			
+
+			% Since $f_n \to f$ in the sup norm we know that $\norm{f_n(x) - f(x)}_\infty \to 0$. This means that $sup_{x \in [a, b]}|f_n(x) - f(x)| \to 0$. Thus for any $\varepsilon \geq$, there is some $N$ such that $\forall n \geq N\ .\ sup_{x \in [a, b]}|f_n(x) - f(x)| \leq \varepsilon$. This implies that $f_n(x) - f(x) \leq \varepsilon$ for all $x \in [a, b]$. 
+
+			% To prove that $\norm{f_n}_\infty \to \norm{f}_\infty$ we must show that for any $\varepsilon \geq 0$ there exists $N$ such that for all $n \geq N$ we know that $|\norm{f_n}_\infty - \norm{f}_\infty| \leq \varepsilon$ 
+
+			% 
+
+			This follows from the Minkowski triangle inequality which states that for $p = \infty$ we have $\norm{f + g}_p \leq \norm{f}_p + \norm{g}_p$. 
+
+			See also Corollary 18.6 in the lecture notes.
+			% QUESTION 
+			
+
+\end{document}
